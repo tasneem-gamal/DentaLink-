@@ -20,6 +20,7 @@ import 'package:dentalink/features/home/data/models/patient_data.dart';
 import 'package:dentalink/features/home/logic/add_patient_cubit/add_patient_cubit.dart';
 import 'package:dentalink/features/home/logic/all_patients_cubit/all_patients_cubit.dart';
 import 'package:dentalink/features/home/logic/latest_patients_cubit/latest_patients_cubit.dart';
+import 'package:dentalink/features/home/logic/search_cubit/search_cubit.dart';
 import 'package:dentalink/features/home/ui/home_view.dart';
 import 'package:dentalink/features/home/ui/widgets/exchange/exchange_view.dart';
 import 'package:dentalink/features/home/ui/widgets/favorites/favorites_view.dart';
@@ -112,6 +113,11 @@ class AppRouter {
                       BlocProvider(
                         create: (context) =>
                             getIt<SignOutCubit>()
+                      ),
+
+                      BlocProvider(
+                        create: (context) =>
+                            getIt<SearchCubit>()
                       ),
                     ],
                     child: HomeView(
