@@ -1,4 +1,4 @@
-import 'package:dentalink/core/theming/styles.dart';
+import 'package:dentalink/core/helpers/custom_error_widget.dart';
 import 'package:dentalink/core/widgets/custom_loading_indicator.dart';
 import 'package:dentalink/features/home/logic/search_cubit/search_cubit.dart';
 import 'package:dentalink/features/home/ui/widgets/search/search_item_list_view.dart';
@@ -23,7 +23,7 @@ class SearchBlocBuilder extends StatelessWidget {
             patientData: state.searchItems,
           );
         } else if(state is SearchFailure){
-          return CustomErrorWidget(errMessage: 'No results');
+          return const CustomErrorWidget(errMessage: 'No results');
         } else {
           return const SizedBox.shrink();
         }
@@ -32,17 +32,3 @@ class SearchBlocBuilder extends StatelessWidget {
   }
 }
 
-class CustomErrorWidget extends StatelessWidget {
-  const CustomErrorWidget({super.key, required this.errMessage});
-  final String errMessage;
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        errMessage,
-        style: CustomTextStyles.font16BlackSemiBold(context),
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
-}
