@@ -8,7 +8,7 @@ class SearchApiService {
     dio = DioFactory.getDio();
   }
 
-  Future<Map<String, dynamic>> searchService() async {
+  Future<List<dynamic>> searchService() async {
     try {
       final response =
           await dio.get('${ApiConstants.baseUrl}${ApiConstants.search}');
