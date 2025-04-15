@@ -40,7 +40,7 @@ class SearchViewBody extends StatelessWidget {
             ],
           ),
           verticalSpace(16),
-          SearchBlocBuilder()
+          const SearchBlocBuilder()
         ],
       ),
     );

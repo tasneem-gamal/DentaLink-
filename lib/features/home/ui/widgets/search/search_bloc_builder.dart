@@ -23,7 +23,7 @@ class SearchBlocBuilder extends StatelessWidget {
             patientData: state.searchItems,
           );
         } else if(state is SearchFailure){
-          return CustomErrorWidget(errMessage: state.errMessage);
+          return CustomErrorWidget(errMessage: 'No results');
         } else {
           return const SizedBox.shrink();
         }
