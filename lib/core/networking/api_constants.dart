@@ -9,4 +9,5 @@ class ApiConstants {
   static const String addpatient = "patients/add";
   static const String allPatients = "patients";
   static const String signOut = "users/logout";
+  static const String search = "patients/search?query=";
 }

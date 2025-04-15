@@ -26,7 +26,7 @@ class AllPatientApiService {
       return AllPatientsResponseBody.fromJson(response.data);
 
     } catch (e){
-      throw Exception('Failed to load specializations: $e');
+      throw Exception('Failed to load Patients: $e');
     }
   }
 }
