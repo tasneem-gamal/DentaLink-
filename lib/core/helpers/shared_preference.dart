@@ -84,4 +84,14 @@ class SharedPreferenceHelper {
     const flutterSecureStorage = FlutterSecureStorage();
     await flutterSecureStorage.deleteAll();
   }
+
+  static Future<void> setStringList(String key, List<String> value) async {
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  await sharedPreferences.setStringList(key, value);
+}
+
+static Future<List<String>> getStringList(String key) async {
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  return sharedPreferences.getStringList(key) ?? [];
+}
 }

@@ -1,5 +1,6 @@
 import 'package:dentalink/core/helpers/constants.dart';
 import 'package:dentalink/core/helpers/extension.dart';
+import 'package:dentalink/core/helpers/shared_preference.dart';
 import 'package:dentalink/core/helpers/spacing.dart';
 import 'package:dentalink/core/widgets/custom_text_form_field.dart';
 import 'package:dentalink/features/home/logic/search_cubit/search_cubit.dart';
@@ -43,6 +44,9 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                       searchText = value;
                     });
                     BlocProvider.of<SearchCubit>(context).search(value);
+                    if (value.trim().isNotEmpty) {
+                      saveSearchTerm(value.trim());
+                    }
                   },
                   validator: (validator){}, 
                   hintText: 'What are you looking for?',
@@ -59,6 +63,15 @@ class _SearchViewBodyState extends State<SearchViewBody> {
       ),
     );
   }
+
+  void saveSearchTerm(String term) async {
+  List<String> history = await SharedPreferenceHelper.getStringList('search_history');
+  if (!history.contains(term)) {
+    history.insert(0, term); 
+    if (history.length > 10) history = history.sublist(0, 10); 
+    await SharedPreferenceHelper.setStringList('search_history', history);
+  }
+}
 }
 
 
