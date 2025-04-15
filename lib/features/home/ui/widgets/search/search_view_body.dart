@@ -39,7 +39,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
               ),
               Expanded(
                 child: CustomTextFormField(
-                  onChanged: (value){
+                  onFieldSubmitted: (value){
                     setState(() {
                       searchText = value;
                     });

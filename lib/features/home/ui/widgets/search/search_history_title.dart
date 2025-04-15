@@ -1,3 +1,4 @@
+import 'package:dentalink/core/helpers/shared_preference.dart';
 import 'package:dentalink/core/theming/colors.dart';
 import 'package:dentalink/core/theming/font_weight_helper.dart';
 import 'package:dentalink/core/theming/styles.dart';
@@ -20,7 +21,9 @@ class SearchHistoryTitle extends StatelessWidget {
           ),
         ),
         IconButton(
-          onPressed: (){}, 
+          onPressed: () async{
+            await SharedPreferenceHelper.setStringList('search_history', []);
+          }, 
           icon: const Icon(
             Icons.delete,
             color: ColorsManager.lightGray,
