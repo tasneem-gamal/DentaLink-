@@ -4,12 +4,21 @@ import 'package:dentalink/core/helpers/spacing.dart';
 import 'package:dentalink/core/widgets/custom_text_form_field.dart';
 import 'package:dentalink/features/home/logic/search_cubit/search_cubit.dart';
 import 'package:dentalink/features/home/ui/widgets/search/search_bloc_builder.dart';
+import 'package:dentalink/features/home/ui/widgets/search/search_history.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SearchViewBody extends StatelessWidget {
+class SearchViewBody extends StatefulWidget {
   const SearchViewBody({super.key});
+
+  @override
+  State<SearchViewBody> createState() => _SearchViewBodyState();
+}
+
+class _SearchViewBodyState extends State<SearchViewBody> {
+ 
+  String searchText = '';
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +39,9 @@ class SearchViewBody extends StatelessWidget {
               Expanded(
                 child: CustomTextFormField(
                   onChanged: (value){
+                    setState(() {
+                      searchText = value;
+                    });
                     BlocProvider.of<SearchCubit>(context).search(value);
                   },
                   validator: (validator){}, 
@@ -40,7 +52,9 @@ class SearchViewBody extends StatelessWidget {
             ],
           ),
           verticalSpace(16),
-          const SearchBlocBuilder()
+          searchText.trim().isEmpty 
+          ? const SearchHistory()
+          : const  SearchBlocBuilder()
         ],
       ),
     );
