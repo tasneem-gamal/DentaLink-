@@ -12,16 +12,14 @@ class SearchRepo {
   Future<Either<Failure, List<PatientData>>> search(
       {required String query}) async {
     try {
-      final response = await searchApiService.searchService();
+      final response = await searchApiService.searchService(query: query);
       List<PatientData> searchItems = [];
       for (var item in response) {
         searchItems.add(PatientData.fromJson(item));
       }
       return right(searchItems);
-    } on Exception catch (e) {
-      if (e is DioException) {
-        return left(ServerFailure.fromDioError(e));
-      }
+    } catch (e) {
+      
       return left(ServerFailure(e.toString()));
     }
   }
