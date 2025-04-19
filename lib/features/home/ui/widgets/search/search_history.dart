@@ -1,5 +1,5 @@
 import 'package:dentalink/core/helpers/spacing.dart';
-import 'package:dentalink/features/home/ui/widgets/search/search_history_item_list_view.dart';
+import 'package:dentalink/features/home/ui/widgets/search/search_history_bloc_builder.dart';
 import 'package:dentalink/features/home/ui/widgets/search/search_history_title.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +13,7 @@ class SearchHistory extends StatelessWidget {
         children: [
           const SearchHistoryTitle(),
           verticalSpace(12),
-          const SearchHistoryItemListView()
+          const SearchHistoryBlocBuilder()
         ],
       ),
     );

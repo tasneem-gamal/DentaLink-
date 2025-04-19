@@ -19,15 +19,19 @@ import 'package:dentalink/features/auth/sign_up/logic/sign_cubit/sign_cubit.dart
 import 'package:dentalink/features/home/data/apis/add_patient_service/add_patient_api_service.dart';
 import 'package:dentalink/features/home/data/apis/all_patients/all_patient_api_service.dart';
 import 'package:dentalink/features/home/data/apis/latest_patients/latest_patients_api_service.dart';
+import 'package:dentalink/features/home/data/apis/new_in_tools_service/new_in_tools_api_service.dart';
 import 'package:dentalink/features/home/data/apis/search/search_api_service.dart';
 import 'package:dentalink/features/home/data/repo/add_patient_repo/add_patient_repo.dart';
 import 'package:dentalink/features/home/data/repo/all_patients_repo/all_patients_repo.dart';
 import 'package:dentalink/features/home/data/repo/latest_patients/latest_patients_repo.dart';
+import 'package:dentalink/features/home/data/repo/new_in_tools/new_in_tools_repo.dart';
 import 'package:dentalink/features/home/data/repo/search_repo/search_repo.dart';
 import 'package:dentalink/features/home/logic/add_patient_cubit/add_patient_cubit.dart';
 import 'package:dentalink/features/home/logic/all_patients_cubit/all_patients_cubit.dart';
 import 'package:dentalink/features/home/logic/latest_patients_cubit/latest_patients_cubit.dart';
+import 'package:dentalink/features/home/logic/new_in_tools_cubit/new_in_tools_cubit.dart';
 import 'package:dentalink/features/home/logic/search_cubit/search_cubit.dart';
+import 'package:dentalink/features/home/logic/search_history_cubit/search_history_cubit.dart';
 import 'package:dentalink/features/profile/data/sign_out/api/sign_out_api_service.dart';
 import 'package:dentalink/features/profile/data/sign_out/repo/sign_out_repo.dart';
 import 'package:dentalink/features/profile/logic/sign_out_cubit/sign_out_cubit.dart';
@@ -100,4 +104,13 @@ void setUpGetIt() {
   getIt.registerSingleton<SearchApiService>(SearchApiService());
   getIt.registerSingleton<SearchRepo>(SearchRepo(getIt.get<SearchApiService>()));
   getIt.registerLazySingleton<SearchCubit>(() => SearchCubit(getIt()));
+  //search history
+  getIt.registerLazySingleton<SearchHistoryCubit>(() => SearchHistoryCubit());
+  
+
+  //New in tools
+  getIt.registerSingleton<NewInToolsApiService>(NewInToolsApiService());
+  getIt.registerSingleton<NewInToolsRepo>(NewInToolsRepo(getIt.get<NewInToolsApiService>()));
+  getIt.registerLazySingleton<NewInToolsCubit>(() => NewInToolsCubit(getIt()));
+
 }

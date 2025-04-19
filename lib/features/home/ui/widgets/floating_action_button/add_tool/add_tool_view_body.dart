@@ -2,7 +2,7 @@ import 'package:dentalink/core/helpers/constants.dart';
 import 'package:dentalink/core/helpers/spacing.dart';
 import 'package:dentalink/core/widgets/custom_app_button.dart';
 import 'package:dentalink/core/widgets/title_of_text_field.dart';
-import 'package:dentalink/features/home/ui/widgets/floating_action_button/add_patient/description_form_field.dart';
+import 'package:dentalink/features/home/ui/widgets/floating_action_button/description_form_field.dart';
 import 'package:dentalink/features/home/ui/widgets/floating_action_button/add_tool/category_drop_down_menu_add_tool.dart';
 import 'package:dentalink/features/home/ui/widgets/floating_action_button/add_tool/name_price_add_tool.dart';
 import 'package:dentalink/features/home/ui/widgets/floating_action_button/add_tool/upload_tool_images.dart';
@@ -36,8 +36,9 @@ class _AddToolViewBodyState extends State<AddToolViewBody> {
               verticalSpace(12),
               const CategoryDropDownMenuAddTool(),
               verticalSpace(16),
-              const DescriptionFormField(
-                hintText: 'ex. Reflects light for better visibility during procedures.'
+              DescriptionFormField(
+                hintText: 'ex. Reflects light for better visibility during procedures.',
+                descriptionController: TextEditingController(),
               ),
               verticalSpace(16),
               UploadToolImages(
