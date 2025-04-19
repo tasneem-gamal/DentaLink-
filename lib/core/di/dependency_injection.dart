@@ -28,6 +28,7 @@ import 'package:dentalink/features/home/logic/add_patient_cubit/add_patient_cubi
 import 'package:dentalink/features/home/logic/all_patients_cubit/all_patients_cubit.dart';
 import 'package:dentalink/features/home/logic/latest_patients_cubit/latest_patients_cubit.dart';
 import 'package:dentalink/features/home/logic/search_cubit/search_cubit.dart';
+import 'package:dentalink/features/home/logic/search_history_cubit/search_history_cubit.dart';
 import 'package:dentalink/features/profile/data/sign_out/api/sign_out_api_service.dart';
 import 'package:dentalink/features/profile/data/sign_out/repo/sign_out_repo.dart';
 import 'package:dentalink/features/profile/logic/sign_out_cubit/sign_out_cubit.dart';
@@ -100,4 +101,7 @@ void setUpGetIt() {
   getIt.registerSingleton<SearchApiService>(SearchApiService());
   getIt.registerSingleton<SearchRepo>(SearchRepo(getIt.get<SearchApiService>()));
   getIt.registerLazySingleton<SearchCubit>(() => SearchCubit(getIt()));
+  //search history
+  getIt.registerLazySingleton<SearchHistoryCubit>(() => SearchHistoryCubit());
+
 }

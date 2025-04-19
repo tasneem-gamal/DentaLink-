@@ -21,6 +21,7 @@ import 'package:dentalink/features/home/logic/add_patient_cubit/add_patient_cubi
 import 'package:dentalink/features/home/logic/all_patients_cubit/all_patients_cubit.dart';
 import 'package:dentalink/features/home/logic/latest_patients_cubit/latest_patients_cubit.dart';
 import 'package:dentalink/features/home/logic/search_cubit/search_cubit.dart';
+import 'package:dentalink/features/home/logic/search_history_cubit/search_history_cubit.dart';
 import 'package:dentalink/features/home/ui/home_view.dart';
 import 'package:dentalink/features/home/ui/widgets/exchange/exchange_view.dart';
 import 'package:dentalink/features/home/ui/widgets/favorites/favorites_view.dart';
@@ -151,8 +152,15 @@ class AppRouter {
 
       case Routes.searchView:
         return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (context) => getIt<SearchCubit>(),
+            builder: (_) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (context) => getIt<SearchCubit>(),
+                    ),
+                    BlocProvider(
+                      create: (context) => getIt<SearchHistoryCubit>(),
+                    ),
+                  ],
                   child: const SearchView(),
                 ));
 
