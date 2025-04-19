@@ -1,8 +1,9 @@
-import 'package:dentalink/core/helpers/shared_preference.dart';
 import 'package:dentalink/core/theming/colors.dart';
 import 'package:dentalink/core/theming/font_weight_helper.dart';
 import 'package:dentalink/core/theming/styles.dart';
+import 'package:dentalink/features/home/logic/search_history_cubit/search_history_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchHistoryTitle extends StatelessWidget {
   const SearchHistoryTitle({
@@ -21,8 +22,8 @@ class SearchHistoryTitle extends StatelessWidget {
           ),
         ),
         IconButton(
-          onPressed: () async{
-            await SharedPreferenceHelper.setStringList('search_history', []);
+          onPressed: () {
+            context.read<SearchHistoryCubit>().clearHistory();
           }, 
           icon: const Icon(
             Icons.delete,
