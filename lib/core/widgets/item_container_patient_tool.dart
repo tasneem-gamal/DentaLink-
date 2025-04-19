@@ -3,6 +3,7 @@ import 'package:dentalink/core/theming/colors.dart';
 import 'package:dentalink/core/theming/styles.dart';
 import 'package:dentalink/core/widgets/label_text_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ItemContainerPatientTool extends StatelessWidget {
   const ItemContainerPatientTool({
@@ -34,7 +35,7 @@ class ItemContainerPatientTool extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width ?? 154,
-      height: height ?? 230,
+      height: height ?? 240.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: ColorsManager.moreLightGray)
