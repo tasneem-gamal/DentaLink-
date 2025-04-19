@@ -22,7 +22,7 @@ class ToolsGridView extends StatelessWidget {
       itemCount: 2,
       itemBuilder: (context, index) => ItemContainerPatientTool(
           image: 'assets/images/tools.png',
-          imageWidth: 180,
+          imageWidth: 160,
           itemTitle: 'Curette',
           firstLabel: 'Price: ',
           firstLabelText: '200',

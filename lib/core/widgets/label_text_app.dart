@@ -54,7 +54,7 @@ class LabelTextApp extends StatelessWidget {
                 child: Text(
                   text,
                   style: textStyleText ?? CustomTextStyles.font12BlackRegular(context),
-                  maxLines: 2,
+                  maxLines: 1,
                   overflow: overflow ?? TextOverflow.ellipsis,
                   softWrap: true,
                 ),
