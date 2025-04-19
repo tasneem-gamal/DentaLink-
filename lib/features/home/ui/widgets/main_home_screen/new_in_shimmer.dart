@@ -14,6 +14,7 @@ class NewInShimmer extends StatelessWidget {
     return SizedBox(
       height: 220.h,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Shimmer.fromColors(
               baseColor: ColorsManager.shimmerColorLoading,
@@ -28,13 +29,13 @@ class NewInShimmer extends StatelessWidget {
                 ),
               ),
             ),
-            horizontalSpace(16),
+            verticalSpace(20),
             Shimmer.fromColors(
               baseColor: ColorsManager.shimmerColorLoading,
               highlightColor: Colors.white,
               child: Container(
                 height: 6.h,
-                width: 180.w,
+                width: 120.w,
                 decoration: BoxDecoration(
                   color: ColorsManager.shimmerColorLoading,
                   borderRadius: BorderRadius.circular(12),
@@ -47,7 +48,7 @@ class NewInShimmer extends StatelessWidget {
               highlightColor: Colors.white,
               child: Container(
                 height: 6.h,
-                width: 160.w,
+                width: 120.w,
                 decoration: BoxDecoration(
                   color: ColorsManager.shimmerColorLoading,
                   borderRadius: BorderRadius.circular(12),
@@ -60,7 +61,20 @@ class NewInShimmer extends StatelessWidget {
               highlightColor: Colors.white,
               child: Container(
                 height: 6.h,
-                width: 160.w,
+                width: 120.w,
+                decoration: BoxDecoration(
+                  color: ColorsManager.shimmerColorLoading,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+            ),
+            verticalSpace(12),
+            Shimmer.fromColors(
+              baseColor: ColorsManager.shimmerColorLoading,
+              highlightColor: Colors.white,
+              child: Container(
+                height: 6.h,
+                width: 120.w,
                 decoration: BoxDecoration(
                   color: ColorsManager.shimmerColorLoading,
                   borderRadius: BorderRadius.circular(12),

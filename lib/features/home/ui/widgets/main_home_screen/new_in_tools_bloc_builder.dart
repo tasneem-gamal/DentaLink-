@@ -1,5 +1,5 @@
-import 'package:dentalink/core/widgets/custom_loading_indicator.dart';
 import 'package:dentalink/features/home/logic/new_in_tools_cubit/new_in_tools_cubit.dart';
+import 'package:dentalink/features/home/ui/widgets/main_home_screen/new_in_shimmer_list_view.dart';
 import 'package:dentalink/features/home/ui/widgets/main_home_screen/new_in_tools_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +16,7 @@ class NewInToolsBlocBuilder extends StatelessWidget {
         current is NewInToolsFailure,
       builder: (context, state){
         if(state is NewInToolsLoading){
-          return const CustomLoadingIndicator();
+          return const NewInShimmerListView();
         } else if(state is NewInToolsSuccess){
           return NewInToolsListView(
             toolDate: state.toolDate
