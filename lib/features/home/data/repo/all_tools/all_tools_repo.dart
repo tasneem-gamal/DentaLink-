@@ -8,7 +8,7 @@ class AllToolsRepo {
 
   AllToolsRepo(this.allToolsApiService);
 
-  Future<Either<Failure, AllToolsResponseBody>> getAllPatients() async{
+  Future<Either<Failure, AllToolsResponseBody>> getAllTools() async{
     try{
       final response = await allToolsApiService.allToolsService();
       return right(response);
