@@ -10,4 +10,5 @@ class ApiConstants {
   static const String allPatients = "patients";
   static const String signOut = "users/logout";
   static const String search = "patients/search?query=";
+  static const String newInTools = "tools/latest";
 }
