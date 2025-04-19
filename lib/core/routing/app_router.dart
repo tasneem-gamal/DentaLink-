@@ -19,6 +19,7 @@ import 'package:dentalink/features/cart/ui/widgets/checkout/order_details/order_
 import 'package:dentalink/features/home/data/models/patient_data.dart';
 import 'package:dentalink/features/home/logic/add_patient_cubit/add_patient_cubit.dart';
 import 'package:dentalink/features/home/logic/all_patients_cubit/all_patients_cubit.dart';
+import 'package:dentalink/features/home/logic/all_tools_cubit/all_tools_cubit.dart';
 import 'package:dentalink/features/home/logic/latest_patients_cubit/latest_patients_cubit.dart';
 import 'package:dentalink/features/home/logic/new_in_tools_cubit/new_in_tools_cubit.dart';
 import 'package:dentalink/features/home/logic/search_cubit/search_cubit.dart';
@@ -140,7 +141,11 @@ class AppRouter {
                 ));
 
       case Routes.toolsView:
-        return MaterialPageRoute(builder: (_) => const ToolsView());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => getIt<AllToolsCubit>(),
+                  child: const ToolsView(),
+                ));
 
       case Routes.patientDetails:
         final patientData = settings.arguments as PatientData;
