@@ -1,7 +1,7 @@
 import 'package:dentalink/core/helpers/spacing.dart';
 import 'package:dentalink/core/widgets/label_text_app.dart';
 import 'package:dentalink/features/home/data/models/patient_data.dart';
-import 'package:dentalink/features/home/ui/widgets/patients/patient_avatar.dart';
+import 'package:dentalink/features/home/ui/widgets/patients/patient_details/patient_avatar.dart';
 import 'package:flutter/material.dart';
 
 class PatientMainDetails extends StatelessWidget {

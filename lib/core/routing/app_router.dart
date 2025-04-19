@@ -29,7 +29,7 @@ import 'package:dentalink/features/home/ui/widgets/exchange/exchange_view.dart';
 import 'package:dentalink/features/home/ui/widgets/favorites/favorites_view.dart';
 import 'package:dentalink/features/home/ui/widgets/floating_action_button/add_patient/add_patient_view.dart';
 import 'package:dentalink/features/home/ui/widgets/floating_action_button/add_tool/add_tool_view.dart';
-import 'package:dentalink/features/home/ui/widgets/patients/patient_details_view.dart';
+import 'package:dentalink/features/home/ui/widgets/patients/patient_details/patient_details_view.dart';
 import 'package:dentalink/features/home/ui/widgets/patients/patients_view.dart';
 import 'package:dentalink/features/home/ui/widgets/search/search_view.dart';
 import 'package:dentalink/features/home/ui/widgets/tools/tool_details/reviews/reviews_view.dart';

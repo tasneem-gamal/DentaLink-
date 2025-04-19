@@ -2,10 +2,10 @@ import 'package:dentalink/core/helpers/constants.dart';
 import 'package:dentalink/core/helpers/spacing.dart';
 import 'package:dentalink/core/widgets/custom_divider.dart';
 import 'package:dentalink/features/home/data/models/patient_data.dart';
-import 'package:dentalink/features/home/ui/widgets/patients/case_details_section.dart';
-import 'package:dentalink/features/home/ui/widgets/patients/contact_info_patient_details.dart';
-import 'package:dentalink/features/home/ui/widgets/patients/patient_attachments_list.dart';
-import 'package:dentalink/features/home/ui/widgets/patients/patient_main_details.dart';
+import 'package:dentalink/features/home/ui/widgets/patients/patient_details/case_details_section.dart';
+import 'package:dentalink/features/home/ui/widgets/patients/patient_details/contact_info_patient_details.dart';
+import 'package:dentalink/features/home/ui/widgets/patients/patient_details/patient_attachments_list.dart';
+import 'package:dentalink/features/home/ui/widgets/patients/patient_details/patient_main_details.dart';
 import 'package:flutter/material.dart';
 
 class PatientDetailsViewBody extends StatelessWidget {
