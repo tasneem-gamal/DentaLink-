@@ -1,5 +1,5 @@
-import 'package:dentalink/core/widgets/custom_loading_indicator.dart';
 import 'package:dentalink/features/home/logic/all_tools_cubit/all_tools_cubit.dart';
+import 'package:dentalink/features/home/ui/widgets/shimmer_loading_grid_view.dart';
 import 'package:dentalink/features/home/ui/widgets/tools/tools_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +16,7 @@ class AllToolsBlocBuilder extends StatelessWidget {
         current is AllToolsFailure,
       builder: (context, state) {
         if(state is AllToolsLoading){
-          return const CustomLoadingIndicator();
+          return const ShimmerLoadingGridView();
         }
         else if(state is AllToolsSuccess){
           return ToolsGridView(

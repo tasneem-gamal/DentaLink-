@@ -1,6 +1,6 @@
 import 'package:dentalink/features/home/logic/all_patients_cubit/all_patients_cubit.dart';
 import 'package:dentalink/features/home/ui/widgets/patients/patients_grid_view.dart';
-import 'package:dentalink/features/home/ui/widgets/patients/patients_shimmer_grid_view.dart';
+import 'package:dentalink/features/home/ui/widgets/shimmer_loading_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +18,7 @@ class AllPaientsBlocBuilder extends StatelessWidget {
         current is AllPatientsFailure,
       builder: (context, state) {
         if(state is AllPatientsLoading){
-          return const PatientsShimmerGridView();
+          return const ShimmerLoadingGridView();
         }
         else if(state is AllPatientsSuccess){
           return PatientsGridView(

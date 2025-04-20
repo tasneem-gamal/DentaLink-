@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
-class PatientsShimmerLoading extends StatelessWidget {
-  const PatientsShimmerLoading({
+class ShimmerLoading extends StatelessWidget {
+  const ShimmerLoading({
     super.key,
   });
 
