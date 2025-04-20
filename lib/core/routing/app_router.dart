@@ -143,7 +143,7 @@ class AppRouter {
       case Routes.toolsView:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
-                  create: (context) => getIt<AllToolsCubit>(),
+                  create: (context) => getIt<AllToolsCubit>()..getTools(),
                   child: const ToolsView(),
                 ));
 

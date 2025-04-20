@@ -25,7 +25,7 @@ class AllToolsApiService {
       return AllToolsResponseBody.fromJson(response.data);
 
     } catch (e){
-      throw Exception('Failed to load Patients: $e');
+      throw Exception('Failed to load Tools: $e');
     }
   }
 }

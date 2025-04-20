@@ -1,12 +1,14 @@
 import 'package:dentalink/core/helpers/extension.dart';
 import 'package:dentalink/core/routing/routes.dart';
 import 'package:dentalink/core/widgets/item_container_patient_tool.dart';
+import 'package:dentalink/features/home/data/models/tool_data.dart';
 import 'package:flutter/material.dart';
 
 class ToolsGridView extends StatelessWidget {
   const ToolsGridView({
-    super.key,
+    super.key, required this.toolData,
   });
+  final List<ToolData> toolData;
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +21,15 @@ class ToolsGridView extends StatelessWidget {
         mainAxisSpacing: 12,
         childAspectRatio: 0.7,
       ),
-      itemCount: 2,
+      itemCount: toolData.length,
       itemBuilder: (context, index) => ItemContainerPatientTool(
           image: 'assets/images/tools.png',
           imageWidth: 160,
-          itemTitle: 'Curette',
+          itemTitle: toolData[index].toolName,
           firstLabel: 'Price: ',
-          firstLabelText: '200',
+          firstLabelText: toolData[index].price.toString(),
           secondLabel: 'Description: ',
-          secondLabelText: 'for deep cleaning bla bkla',
+          secondLabelText: toolData[index].description,
           onTap: () {
             context.pushNamed(Routes.toolDetails);
           },
