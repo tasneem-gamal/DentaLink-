@@ -6,20 +6,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ItemContainerPatientTool extends StatelessWidget {
-  const ItemContainerPatientTool({
-    super.key, 
-    this.width, 
-    this.height, 
-    required this.image, 
-    this.imageWidth,
-    required this.itemTitle, 
-    required this.firstLabel, 
-    required this.firstLabelText, 
-    required this.secondLabel, 
-    required this.secondLabelText,
-    this.onTap
-  });
-  
+  const ItemContainerPatientTool(
+      {super.key,
+      this.width,
+      this.height,
+      required this.image,
+      this.imageWidth,
+      required this.itemTitle,
+      required this.firstLabel,
+      required this.firstLabelText,
+      required this.secondLabel,
+      required this.secondLabelText,
+      this.onTap});
+
   final double? width;
   final double? height;
   final String image;
@@ -37,34 +36,38 @@ class ItemContainerPatientTool extends StatelessWidget {
       width: width ?? 154,
       height: height ?? 240.h,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: ColorsManager.moreLightGray)
-      ),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: ColorsManager.moreLightGray)),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.asset(
-              image,
-              width: imageWidth,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(image, width: imageWidth),
+                verticalSpace(12),
+                Text(
+                  itemTitle,
+                  style: CustomTextStyles.font12BlackMedium(context),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                LabelTextApp(
+                  label: firstLabel,
+                  text: firstLabelText,
+                ),
+                LabelTextApp(
+                  label: secondLabel,
+                  text: secondLabelText,
+                  textStyleText:
+                      CustomTextStyles.font12MainBlueRegular(context),
+                ),
+              ],
             ),
-            verticalSpace(12),
-            Text(
-              itemTitle,
-              style: CustomTextStyles.font12BlackMedium(context)
-            ),
-            LabelTextApp(
-              label: firstLabel,
-              text: firstLabelText,
-            ),
-            LabelTextApp(
-              label: secondLabel, 
-              text: secondLabelText, 
-              textStyleText: CustomTextStyles.font12MainBlueRegular(context),
-            ),
-            verticalSpace(8),
             Align(
               alignment: Alignment.bottomRight,
               child: GestureDetector(
@@ -72,10 +75,10 @@ class ItemContainerPatientTool extends StatelessWidget {
                 child: const CircleAvatar(
                   radius: 20,
                   backgroundColor: ColorsManager.mainBlue,
-                  child: Icon(Icons.arrow_forward_ios, color: Colors.white,),
+                  child: Icon(Icons.arrow_forward_ios, color: Colors.white),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
