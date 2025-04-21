@@ -28,7 +28,10 @@ class NewInToolsListView extends StatelessWidget {
           secondLabel: 'Description:',
           secondLabelText: toolDate[index].description,
           onTap: (){
-            context.pushNamed(Routes.toolDetails);
+            context.pushNamed(
+              Routes.toolDetails,
+              arguments: toolDate[index]
+            );
           },
         )
       ),

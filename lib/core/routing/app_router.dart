@@ -17,6 +17,7 @@ import 'package:dentalink/features/cart/ui/widgets/checkout/checkout_confirm/che
 import 'package:dentalink/features/cart/ui/widgets/checkout/checkout_pay/checkout_pay_view.dart';
 import 'package:dentalink/features/cart/ui/widgets/checkout/order_details/order_details_view.dart';
 import 'package:dentalink/features/home/data/models/patient_data.dart';
+import 'package:dentalink/features/home/data/models/tool_data.dart';
 import 'package:dentalink/features/home/logic/add_patient_cubit/add_patient_cubit.dart';
 import 'package:dentalink/features/home/logic/all_patients_cubit/all_patients_cubit.dart';
 import 'package:dentalink/features/home/logic/all_tools_cubit/all_tools_cubit.dart';
@@ -155,7 +156,8 @@ class AppRouter {
                 ));
 
       case Routes.toolDetails:
-        return MaterialPageRoute(builder: (_) => const ToolDetailsView());
+      final toolData = settings.arguments as ToolData;
+        return MaterialPageRoute(builder: (_) => ToolDetailsView(toolData: toolData,));
 
       case Routes.reviewsView:
         return MaterialPageRoute(builder: (_) => const ReviewsView());
