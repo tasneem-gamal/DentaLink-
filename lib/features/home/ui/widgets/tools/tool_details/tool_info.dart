@@ -46,7 +46,9 @@ class ToolInfo extends StatelessWidget {
           label: 'Category: ', 
           text: toolData.category
         ),
-        const PublisherInfoSection()
+        PublisherInfoSection(
+          toolData: toolData,
+        )
       ],
     );
   }
