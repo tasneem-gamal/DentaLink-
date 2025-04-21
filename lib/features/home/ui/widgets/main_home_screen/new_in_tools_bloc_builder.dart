@@ -19,7 +19,7 @@ class NewInToolsBlocBuilder extends StatelessWidget {
           return const NewInShimmerListView();
         } else if(state is NewInToolsSuccess){
           return NewInToolsListView(
-            toolDate: state.toolDate
+            toolData: state.toolDate
           );
         } else if(state is NewInToolsFailure){
           return SizedBox(

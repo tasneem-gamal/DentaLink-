@@ -8,9 +8,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NewInToolsListView extends StatelessWidget {
   const NewInToolsListView({
-    super.key, required this.toolDate,
+    super.key, required this.toolData,
   });
-  final List<ToolData> toolDate;
+  final List<ToolData> toolData;
 
   @override
   Widget build(BuildContext context) {
@@ -19,18 +19,18 @@ class NewInToolsListView extends StatelessWidget {
       child: ListView.separated(
         separatorBuilder: (context, index) => horizontalSpace(10),
         scrollDirection: Axis.horizontal,
-        itemCount: toolDate.length,
+        itemCount: toolData.length,
         itemBuilder: (context, index) => ItemContainerPatientTool(
           image: 'assets/images/tools_icon.png',
-          itemTitle: toolDate[index].toolName,
+          itemTitle: toolData[index].toolName,
           firstLabel: 'Price: ',
-          firstLabelText: toolDate[index].price.toString(),
+          firstLabelText: toolData[index].price.toString(),
           secondLabel: 'Description:',
-          secondLabelText: toolDate[index].description,
+          secondLabelText: toolData[index].description,
           onTap: (){
             context.pushNamed(
               Routes.toolDetails,
-              arguments: toolDate[index]
+              arguments: toolData[index]
             );
           },
         )
