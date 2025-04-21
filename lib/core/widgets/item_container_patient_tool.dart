@@ -39,7 +39,7 @@ class ItemContainerPatientTool extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: ColorsManager.moreLightGray)),
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(14.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
