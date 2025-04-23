@@ -23,6 +23,7 @@ import 'package:dentalink/features/home/logic/all_patients_cubit/all_patients_cu
 import 'package:dentalink/features/home/logic/all_tools_cubit/all_tools_cubit.dart';
 import 'package:dentalink/features/home/logic/latest_patients_cubit/latest_patients_cubit.dart';
 import 'package:dentalink/features/home/logic/new_in_tools_cubit/new_in_tools_cubit.dart';
+import 'package:dentalink/features/home/logic/related_tools_cubit/related_tools_cubit.dart';
 import 'package:dentalink/features/home/logic/search_cubit/search_cubit.dart';
 import 'package:dentalink/features/home/logic/search_history_cubit/search_history_cubit.dart';
 import 'package:dentalink/features/home/ui/home_view.dart';
@@ -156,8 +157,14 @@ class AppRouter {
                 ));
 
       case Routes.toolDetails:
-      final toolData = settings.arguments as ToolData;
-        return MaterialPageRoute(builder: (_) => ToolDetailsView(toolData: toolData,));
+        final toolData = settings.arguments as ToolData;
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => getIt<RelatedToolsCubit>()..getRelatedTools(toolData),
+                  child: ToolDetailsView(
+                    toolData: toolData,
+                  ),
+                ));
 
       case Routes.reviewsView:
         return MaterialPageRoute(builder: (_) => const ReviewsView());
