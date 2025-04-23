@@ -19,7 +19,9 @@ class RelatedToolsBlocBuilder extends StatelessWidget {
           return const NewInShimmerListView();
         }
         else if(state is RelatedToolsSuccess){
-          return RelatedToolsListView();
+          return RelatedToolsListView(
+            toolData: state.toolDate,
+          );
         } else if(state is RelatedToolsFailure){
           return SizedBox(
             child: Text(state.errMessage),
