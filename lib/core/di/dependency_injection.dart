@@ -89,7 +89,7 @@ void setUpGetIt() {
   //add patient
   getIt.registerSingleton<AddPatientApiService>(AddPatientApiService());
   getIt.registerSingleton<AddPatientRepo>(AddPatientRepo(getIt.get<AddPatientApiService>()));
-  getIt.registerLazySingleton<AddPatientCubit>(() => AddPatientCubit(getIt()));
+  getIt.registerFactory<AddPatientCubit>(() => AddPatientCubit(getIt()));
 
   //all patients
   getIt.registerSingleton<AllPatientApiService>(AllPatientApiService());
@@ -109,7 +109,7 @@ void setUpGetIt() {
   //search
   getIt.registerSingleton<SearchApiService>(SearchApiService());
   getIt.registerSingleton<SearchRepo>(SearchRepo(getIt.get<SearchApiService>()));
-  getIt.registerLazySingleton<SearchCubit>(() => SearchCubit(getIt()));
+  getIt.registerFactory<SearchCubit>(() => SearchCubit(getIt()));
   //search history
   getIt.registerLazySingleton<SearchHistoryCubit>(() => SearchHistoryCubit());
   
@@ -127,6 +127,6 @@ void setUpGetIt() {
   //related tools => tool details
   getIt.registerSingleton<RelatedToolsApiService>(RelatedToolsApiService());
   getIt.registerSingleton<RelatedToolsRepo>(RelatedToolsRepo(getIt.get<RelatedToolsApiService>()));
-  getIt.registerLazySingleton<RelatedToolsCubit>(() => RelatedToolsCubit(getIt()));
+  getIt.registerFactory<RelatedToolsCubit>(() => RelatedToolsCubit(getIt()));
 
 }
