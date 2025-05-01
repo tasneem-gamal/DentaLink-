@@ -15,7 +15,7 @@ class NewInToolsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 230.h,
+      height: 240.h,
       child: ListView.separated(
         separatorBuilder: (context, index) => horizontalSpace(10),
         scrollDirection: Axis.horizontal,
