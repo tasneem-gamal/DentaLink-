@@ -1,3 +1,4 @@
+import 'package:dentalink/core/widgets/general_custom_app_bar.dart';
 import 'package:dentalink/features/AI_scan/ui/widgets/chat_view_body.dart';
 import 'package:flutter/material.dart';
 
@@ -6,9 +7,9 @@ class ChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: const ChatViewBody(),
+    return const Scaffold(
+      appBar: GeneralCustomAppBar(title: 'ChatBot'),
+      body: ChatViewBody(),
     );
   }
 }
