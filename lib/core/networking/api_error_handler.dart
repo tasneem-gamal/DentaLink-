@@ -32,9 +32,7 @@ class ServerFailure extends Failure {
           return ServerFailure('No internet connection. Please check your network.');
         }
         return ServerFailure('An unknown error occurred. Please try again.');
-      default:
-        return ServerFailure(dioError.message ?? 'Unexpected error occurred. Please try later.');
-    }
+      }
   }
 
 factory ServerFailure.fromResponse(int statusCode, dynamic response) {
