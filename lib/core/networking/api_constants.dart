@@ -13,4 +13,5 @@ class ApiConstants {
   static const String search = "patients/search?query=";
   static const String newInTools = "tools/latest";
   static const String relatedTools = "tools/latest";
+  static const String aiChat = "ai-tool/analyze";
 }
