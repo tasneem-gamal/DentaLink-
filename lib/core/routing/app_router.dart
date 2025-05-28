@@ -1,5 +1,6 @@
 import 'package:dentalink/core/di/dependency_injection.dart';
 import 'package:dentalink/core/routing/routes.dart';
+import 'package:dentalink/features/AI_scan/logic/chat_cubit/chat_cubit.dart';
 import 'package:dentalink/features/AI_scan/ui/widgets/ai_scan_view.dart';
 import 'package:dentalink/features/AI_scan/ui/widgets/chat_view.dart';
 import 'package:dentalink/features/auth/forgot_password/logic/change_password_cubit/change_password_cubit.dart';
@@ -161,7 +162,8 @@ class AppRouter {
         final toolData = settings.arguments as ToolData;
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
-                  create: (context) => getIt<RelatedToolsCubit>()..getRelatedTools(toolData),
+                  create: (context) =>
+                      getIt<RelatedToolsCubit>()..getRelatedTools(toolData),
                   child: ToolDetailsView(
                     toolData: toolData,
                   ),
@@ -241,7 +243,11 @@ class AppRouter {
 
       //AI scan
       case Routes.aiScanView:
-        return MaterialPageRoute(builder: (_) => const AiScanView());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => getIt<ChatCubit>(),
+                  child: const AiScanView(),
+                ));
 
       case Routes.chatView:
         return MaterialPageRoute(builder: (_) => const ChatView());

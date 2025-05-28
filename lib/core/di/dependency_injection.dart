@@ -1,3 +1,6 @@
+import 'package:dentalink/features/AI_scan/data/api/chat_api_service.dart';
+import 'package:dentalink/features/AI_scan/data/repo/chat_repo.dart';
+import 'package:dentalink/features/AI_scan/logic/chat_cubit/chat_cubit.dart';
 import 'package:dentalink/features/auth/forgot_password/data/apis/change_password_service/change_password_api_service.dart';
 import 'package:dentalink/features/auth/forgot_password/data/apis/forgot_password_service/forgot_password_api_service.dart';
 import 'package:dentalink/features/auth/forgot_password/data/apis/resend_otp_service/resend_otp_api_service.dart';
@@ -128,5 +131,11 @@ void setUpGetIt() {
   getIt.registerSingleton<RelatedToolsApiService>(RelatedToolsApiService());
   getIt.registerSingleton<RelatedToolsRepo>(RelatedToolsRepo(getIt.get<RelatedToolsApiService>()));
   getIt.registerFactory<RelatedToolsCubit>(() => RelatedToolsCubit(getIt()));
+
+
+  //ai chat
+  getIt.registerSingleton<ChatApiService>(ChatApiService());
+  getIt.registerSingleton<ChatRepo>(ChatRepo(getIt.get<ChatApiService>()));
+  getIt.registerFactory<ChatCubit>(() => ChatCubit(getIt()));
 
 }
