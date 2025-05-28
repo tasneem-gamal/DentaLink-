@@ -1,0 +1,2 @@
+D:/grad-proj/dentalink/android/app/.cxx/Debug/40101q6y/x86/CMakeFiles/edit_cache.dir
+D:/grad-proj/dentalink/android/app/.cxx/Debug/40101q6y/x86/CMakeFiles/rebuild_cache.dir
