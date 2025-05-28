@@ -49,6 +49,7 @@ class Routes {
 
   //AI scan and related
   static const aiScanView = '/aiScanView';
+  static const chatView = '/chatView';
 
 
 }

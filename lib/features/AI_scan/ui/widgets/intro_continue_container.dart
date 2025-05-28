@@ -1,4 +1,6 @@
+import 'package:dentalink/core/helpers/extension.dart';
 import 'package:dentalink/core/helpers/spacing.dart';
+import 'package:dentalink/core/routing/routes.dart';
 import 'package:dentalink/core/theming/colors.dart';
 import 'package:dentalink/features/profile/ui/widgets/custom_text_rich.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +39,9 @@ class IntroContinueContainer extends StatelessWidget {
             ),
             verticalSpace(12),
             GestureDetector(
-              onTap: (){},
+              onTap: (){
+                context.pushNamed(Routes.chatView);
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
