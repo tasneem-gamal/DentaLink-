@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:dentalink/core/helpers/constants.dart';
 import 'package:dentalink/core/helpers/spacing.dart';
 import 'package:dentalink/core/theming/colors.dart';
@@ -12,13 +10,15 @@ class SendField extends StatefulWidget {
     super.key,
     required this.controller,
     required FocusNode focusNode,
-    required InMemoryChatController chatController, required this.currentUserId,
-  }) : _focusNode = focusNode, _chatController = chatController;
+    required InMemoryChatController chatController,
+    required this.currentUserId,
+    required this.onSendPressed, 
+  }) : _focusNode = focusNode;
 
   final TextEditingController controller;
   final FocusNode _focusNode;
-  final InMemoryChatController _chatController;
   final String currentUserId;
+  final void Function(String) onSendPressed;  
 
   @override
   State<SendField> createState() => _SendFieldState();
@@ -42,18 +42,16 @@ class _SendFieldState extends State<SendField> {
                 decoration: InputDecoration(
                   hintText: 'Type your message...',
                   prefixIcon: IconButton(
-                    onPressed: (){
-                      if (_overlayEntry == null) {
-                        _showOverlay();
-                      } else {
-                        _removeOverlay();
-                      }
-                    },
-                    icon: const Icon(Icons.attach_file)
-                  ),
+                      onPressed: () {
+                        if (_overlayEntry == null) {
+                          _showOverlay();
+                        } else {
+                          _removeOverlay();
+                        }
+                      },
+                      icon: const Icon(Icons.attach_file)),
                   border: const OutlineInputBorder(
-                      borderRadius:
-                          BorderRadius.all(Radius.circular(40)),
+                      borderRadius: BorderRadius.all(Radius.circular(40)),
                       borderSide:
                           BorderSide(color: ColorsManager.moreLightGray)),
                 ),
@@ -64,14 +62,7 @@ class _SendFieldState extends State<SendField> {
               onTap: () {
                 final text = widget.controller.text.trim();
                 if (text.isNotEmpty) {
-                  widget._chatController.insertMessage(
-                    TextMessage(
-                      id: '${Random().nextInt(1000)}',
-                      authorId: widget.currentUserId,
-                      createdAt: DateTime.now().toUtc(),
-                      text: text,
-                    ),
-                  );
+                  widget.onSendPressed(text); 
                   widget.controller.clear();
                 }
               },
