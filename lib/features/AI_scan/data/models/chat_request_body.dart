@@ -1,5 +1,7 @@
+import 'dart:io';
+
 class ChatRequestBody {
-  final String? image;
+  final File? image;
   final String message;
   final String? chatId;
 

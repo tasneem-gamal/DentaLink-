@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:dentalink/core/helpers/constants.dart';
 import 'package:dentalink/core/helpers/shared_preference.dart';
 import 'package:dentalink/features/AI_scan/data/models/chat_request_body.dart';
@@ -71,8 +72,8 @@ class _ChatViewBodyState extends State<ChatViewBody> {
                 focusNode: _focusNode,
                 chatController: _chatController,
                 currentUserId: _currentUserId!,
-                onSendPressed: (text) {
-                  _handleSendMessage(text);
+                onSendPressed: (text, imageFile) {
+                  _handleSendMessage(text, imageFile);
                 },
               );
             },
@@ -84,20 +85,25 @@ class _ChatViewBodyState extends State<ChatViewBody> {
     );
   }
 
-  void _handleSendMessage(String text) {
-    final userMessage = TextMessage(
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
-      authorId: _currentUserId!,
-      createdAt: DateTime.now().toUtc(),
-      text: text,
-    );
-    _chatController.insertMessage(userMessage);
+  void _handleSendMessage(String text, File? imageFile) async {
+    if (text.isEmpty && imageFile == null) return;
 
+    if (text.isNotEmpty) {
+      final userMessage = TextMessage(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        authorId: _currentUserId!,
+        createdAt: DateTime.now().toUtc(),
+        text: text,
+      );
+      _chatController.insertMessage(userMessage);
+    }
     final request = ChatRequestBody(
-      message: text,
+      message: text.isNotEmpty ? text : '',
       chatId: null,
+      image: imageFile,
     );
 
     chatCubit.sendMessage(request);
   }
+
 }

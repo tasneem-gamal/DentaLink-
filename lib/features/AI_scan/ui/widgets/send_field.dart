@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:dentalink/core/helpers/constants.dart';
 import 'package:dentalink/core/helpers/spacing.dart';
 import 'package:dentalink/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
+import 'package:image_picker/image_picker.dart';
 
 
 class SendField extends StatefulWidget {
@@ -18,7 +21,8 @@ class SendField extends StatefulWidget {
   final TextEditingController controller;
   final FocusNode _focusNode;
   final String currentUserId;
-  final void Function(String) onSendPressed;  
+  final void Function(String, File?) onSendPressed;
+
 
   @override
   State<SendField> createState() => _SendFieldState();
@@ -26,6 +30,8 @@ class SendField extends StatefulWidget {
 
 class _SendFieldState extends State<SendField> {
   OverlayEntry? _overlayEntry;
+  File? _pickedImage;
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,47 +39,63 @@ class _SendFieldState extends State<SendField> {
       alignment: Alignment.bottomCenter,
       child: Padding(
         padding: Constants.appPadding,
-        child: Row(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Expanded(
-              child: TextField(
-                controller: widget.controller,
-                focusNode: widget._focusNode,
-                decoration: InputDecoration(
-                  hintText: 'Type your message...',
-                  prefixIcon: IconButton(
-                      onPressed: () {
-                        if (_overlayEntry == null) {
-                          _showOverlay();
-                        } else {
-                          _removeOverlay();
-                        }
-                      },
-                      icon: const Icon(Icons.attach_file)),
-                  border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(40)),
-                      borderSide:
-                          BorderSide(color: ColorsManager.moreLightGray)),
+            if (_pickedImage != null)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Image.file(
+                      _pickedImage!,
+                      width: 100,
+                      height: 100,
+                    ),
+                  ),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: widget.controller,
+                    focusNode: widget._focusNode,
+                    decoration: InputDecoration(
+                      hintText: 'Type your message...',
+                      prefixIcon: IconButton(
+                          onPressed: () {
+                            if (_overlayEntry == null) {
+                              _showOverlay();
+                            } else {
+                              _removeOverlay();
+                            }
+                          },
+                          icon: const Icon(Icons.attach_file)),
+                      border: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(40)),
+                          borderSide:
+                              BorderSide(color: ColorsManager.moreLightGray)),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            horizontalSpace(10),
-            GestureDetector(
-              onTap: () {
-                final text = widget.controller.text.trim();
-                if (text.isNotEmpty) {
-                  widget.onSendPressed(text); 
-                  widget.controller.clear();
-                }
-              },
-              child: const CircleAvatar(
-                radius: 24,
-                backgroundColor: ColorsManager.mainBlue,
-                child: Icon(
-                  Icons.send,
-                  color: Colors.white,
+                horizontalSpace(10),
+                GestureDetector(
+                  onTap: () {
+                    final text = widget.controller.text.trim();
+                    if (text.isNotEmpty || _pickedImage != null) {
+                      widget.onSendPressed(text, _pickedImage);
+                      _pickedImage = null;
+                      widget.controller.clear();
+                      setState(() {});
+                    }
+                  },
+                  child: const CircleAvatar(
+                    radius: 24,
+                    backgroundColor: ColorsManager.mainBlue,
+                    child: Icon(
+                      Icons.send,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ],
         ),
@@ -115,8 +137,16 @@ class _SendFieldState extends State<SendField> {
                     ListTile(
                       leading: const Icon(Icons.upload),
                       title: const Text('Attach File'),
-                      onTap: () {
+                      onTap: () async {
                         _removeOverlay();
+                        final picker = ImagePicker();
+                        final picked =
+                            await picker.pickImage(source: ImageSource.gallery);
+                        if (picked != null) {
+                          setState(() {
+                            _pickedImage = File(picked.path);
+                          });
+                        }
                       },
                     ),
                   ],

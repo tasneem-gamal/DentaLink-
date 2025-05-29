@@ -17,16 +17,28 @@ class ChatBlocListener extends StatelessWidget {
     return BlocListener<ChatCubit, ChatState>(
       listener: (context, state) {
         if (state is ChatSuccess) {
-          final botReply = state.chatResponseBody.data.geminiResponse;
-
-          final botMessage = TextMessage(
-            id: DateTime.now().millisecondsSinceEpoch.toString(),
-            authorId: 'bot',
-            createdAt: DateTime.now().toUtc(),
-            text: botReply,
+          final response = state.chatResponseBody.data;
+          final now = DateTime.now().toUtc();
+          final botTextMessage = TextMessage(
+            id: now.millisecondsSinceEpoch.toString(),
+            authorId: 'DentaLink',
+            createdAt: now,
+            text: response.geminiResponse,
           );
-
-          chatController.insertMessage(botMessage);
+          chatController.insertMessage(botTextMessage);
+          if (response.imageUrl != null && response.imageUrl!.isNotEmpty) {
+            final now = DateTime.now();
+            final botImageMessage = ImageMessage(
+              id: '${now.millisecondsSinceEpoch}_image',
+              authorId: 'DentaLink',
+              createdAt: now,
+              source: response.imageUrl!, 
+              text: 'Diagnosis Image', 
+              width: 300,
+              height: 300,
+            );
+            chatController.insertMessage(botImageMessage);
+          }
         }
         if (state is ChatFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -34,7 +46,7 @@ class ChatBlocListener extends StatelessWidget {
           );
         }
       },
-      child: const SizedBox.shrink(), 
+      child: const SizedBox.shrink(),
     );
   }
 }
