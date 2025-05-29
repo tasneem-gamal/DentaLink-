@@ -23,15 +23,15 @@ class AiScanViewBody extends StatelessWidget {
           ),
           verticalSpace(16),
           const Text(
-            '1. Upload an Image – Select and upload a dental X-ray or a photo of teeth.'
+            '1. Ask dental questions in plain text – from symptoms to treatment suggestions – and get instant answers.'
           ),
           verticalSpace(12),
           const Text(
-            '2. AI Analysis – Our AI will analyze the image to detect potential dental issues.'
+            '2. Upload dental images (e.g., X-rays), and the bot will analyze them to detect potential issues or provide diagnosis assistance.'
           ),
           verticalSpace(12),
           const Text(
-            '3. Receive Insights – Get a detailed analysis with possible diagnoses and recommendations.'
+            '3. Get real-time support for your dental cases, studies, or patient scenarios.'
           ),
         ],
       ),

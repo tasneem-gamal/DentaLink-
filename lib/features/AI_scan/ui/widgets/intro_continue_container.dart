@@ -16,7 +16,7 @@ class IntroContinueContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 130.h,
+      height: 150.h,
       decoration: const BoxDecoration(
         color: ColorsManager.lightBlue
       ),
@@ -30,9 +30,9 @@ class IntroContinueContainer extends StatelessWidget {
                 horizontalSpace(10),
                 const Expanded(
                   child: CustomTextRich(
-                    firstTextSpan: 'Upload a photo, and the ', 
-                    mainBlueText: 'chatbot ', 
-                    text: 'will provide insights to assist you in diagnosis.'
+                    firstTextSpan: 'Sending text or dental images (like X-rays) to the ', 
+                    mainBlueText: 'chatbot, ', 
+                    text: 'and it will analyze and respond with helpful insights'
                   ),
                 )
               ],
