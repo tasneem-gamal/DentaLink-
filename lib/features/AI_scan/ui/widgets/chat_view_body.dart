@@ -2,6 +2,7 @@ import 'package:dentalink/core/helpers/constants.dart';
 import 'package:dentalink/core/helpers/shared_preference.dart';
 import 'package:dentalink/features/AI_scan/data/models/chat_request_body.dart';
 import 'package:dentalink/features/AI_scan/logic/chat_cubit/chat_cubit.dart';
+import 'package:dentalink/features/AI_scan/ui/widgets/chat_bloc_listner.dart';
 import 'package:dentalink/features/AI_scan/ui/widgets/send_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +31,7 @@ class _ChatViewBodyState extends State<ChatViewBody> {
     _focusNode.addListener(() {
       widget.onFocusChanged?.call(_focusNode.hasFocus);
     });
-    chatCubit = context.read<ChatCubit>(); 
+    chatCubit = context.read<ChatCubit>();
   }
 
   @override
@@ -52,49 +53,34 @@ class _ChatViewBodyState extends State<ChatViewBody> {
       return const Center(child: CircularProgressIndicator());
     }
 
-    return BlocListener<ChatCubit, ChatState>(
-      listener: (context, state) {
-        if (state is ChatSuccess) {
-          final botReply = state.chatResponseBody.data.geminiResponse;
-
-          final botMessage = TextMessage(
-            id: DateTime.now().millisecondsSinceEpoch.toString(),
-            authorId: 'bot', 
-            createdAt: DateTime.now().toUtc(),
-            text: botReply,
-          );
-
-          _chatController.insertMessage(botMessage);
-        }
-        if (state is ChatFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Error: ${state.errMessage}')),
-          );
-        }
-      },
-      child: Chat(
-        currentUserId: _currentUserId!,
-        chatController: _chatController,
-        resolveUser: (id) async => User(id: id, name: id == _currentUserId ? 'You' : 'Health Assistant'),
-        builders: Builders(
-          emptyChatListBuilder: (context) => const SizedBox.shrink(),
-          composerBuilder: (context) {
-            final controller = TextEditingController();
-            return SendField(
-              controller: controller,
-              focusNode: _focusNode,
-              chatController: _chatController,
-              currentUserId: _currentUserId!,
-              onSendPressed: (text) {
-                _handleSendMessage(text);
-              },
-            );
-          },
+    return Stack(
+      children: [
+        Chat(
+          currentUserId: _currentUserId!,
+          chatController: _chatController,
+          resolveUser: (id) async => User(
+            id: id,
+            name: id == _currentUserId ? 'You' : 'Health Assistant',
+          ),
+          builders: Builders(
+            emptyChatListBuilder: (context) => const SizedBox.shrink(),
+            composerBuilder: (context) {
+              final controller = TextEditingController();
+              return SendField(
+                controller: controller,
+                focusNode: _focusNode,
+                chatController: _chatController,
+                currentUserId: _currentUserId!,
+                onSendPressed: (text) {
+                  _handleSendMessage(text);
+                },
+              );
+            },
+          ),
+          onMessageSend: (text) {},
         ),
-        onMessageSend: (text) {
-          
-        },
-      ),
+        ChatBlocListener(chatController: _chatController),
+      ],
     );
   }
 
@@ -115,4 +101,3 @@ class _ChatViewBodyState extends State<ChatViewBody> {
     chatCubit.sendMessage(request);
   }
 }
-
