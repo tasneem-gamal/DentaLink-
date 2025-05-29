@@ -60,7 +60,7 @@ class _ChatViewBodyState extends State<ChatViewBody> {
           chatController: _chatController,
           resolveUser: (id) async => User(
             id: id,
-            name: id == _currentUserId ? 'You' : 'Health Assistant',
+            name: id == _currentUserId ? 'You' : 'DentaLink',
           ),
           builders: Builders(
             emptyChatListBuilder: (context) => const SizedBox.shrink(),
