@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
+import 'package:flyer_chat_image_message/flyer_chat_image_message.dart';
 
 class ChatViewBody extends StatefulWidget {
   const ChatViewBody({super.key, this.onFocusChanged});
@@ -77,6 +78,12 @@ class _ChatViewBodyState extends State<ChatViewBody> {
                 },
               );
             },
+            imageMessageBuilder: (context, message, defaultWidget) {
+              return FlyerChatImageMessage(
+                message: message,
+                index: defaultWidget,
+              );
+            },
           ),
           onMessageSend: (text) {},
         ),
@@ -104,6 +111,17 @@ class _ChatViewBodyState extends State<ChatViewBody> {
     );
 
     chatCubit.sendMessage(request);
+
+    if (imageFile != null) {
+      final localImageMessage = ImageMessage(
+        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        authorId: _currentUserId!,
+        createdAt: DateTime.now().toUtc(),
+        source: imageFile.path,
+        metadata: {'isLocal': true},
+      );
+      _chatController.insertMessage(localImageMessage);
+    }
   }
 
 }

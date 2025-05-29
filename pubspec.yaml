@@ -45,6 +45,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   flutter_screenutil: ^5.9.3
   flutter_secure_storage: ^9.2.4
+  flyer_chat_image_message: ^2.1.7
   font_awesome_flutter: ^10.8.0
   get: ^4.6.6
   get_it: ^8.0.3
