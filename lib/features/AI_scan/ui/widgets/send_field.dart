@@ -61,6 +61,7 @@ class _SendFieldState extends State<SendField> {
                     decoration: InputDecoration(
                       hintText: 'Type your message...',
                       fillColor: Colors.white,
+                      filled: true,
                       prefixIcon: IconButton(
                           onPressed: () {
                             if (_overlayEntry == null) {
