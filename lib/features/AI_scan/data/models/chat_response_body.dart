@@ -18,19 +18,19 @@ class ChatResponseBody {
 class ChatResponseData {
   final String chatId;
   final String geminiResponse;
-  final String imageUrl;
+  final String? imageUrl;
 
   ChatResponseData({
     required this.chatId,
     required this.geminiResponse,
-    required this.imageUrl,
+    this.imageUrl,
   });
 
   factory ChatResponseData.fromJson(Map<String, dynamic> json) {
     return ChatResponseData(
       chatId: json['chatId'] as String,
       geminiResponse: json['geminiResponse'] as String,
-      imageUrl: json['imageUrl'] as String,
+      imageUrl: json.containsKey('imageUrl') && json['imageUrl'] != null ? json['imageUrl'] as String : null,
     );
   }
 

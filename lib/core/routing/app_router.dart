@@ -250,7 +250,11 @@ class AppRouter {
                 ));
 
       case Routes.chatView:
-        return MaterialPageRoute(builder: (_) => const ChatView());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => getIt<ChatCubit>(),
+                  child: const ChatView(),
+                ));
 
       default:
         return null;

@@ -11,16 +11,15 @@ class ChatRepo {
   ChatRepo(this.chatApiService);
 
   Future<Either<Failure, ChatResponseBody>> sendMessageRepo(
-    ChatRequestBody chatRequestBody
-  ) async{
-    try{
+      ChatRequestBody chatRequestBody) async {
+    try {
       final response = await chatApiService.sendMessage(chatRequestBody);
       return right(response);
-    } catch (e){
-      if(e is DioException){
+    } catch (e) {
+      if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
-      return left(ServerFailure('An unexpected error occurred. Please try again.'));
+      return left(ServerFailure(e.toString()));
     }
   }
 }

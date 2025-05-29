@@ -10,18 +10,18 @@ class ChatCubit extends Cubit<ChatState> {
 
   final ChatRepo chatRepo;
 
-  void emitChatStates(ChatRequestBody chatRequestBody) async {
-  emit(ChatLoading());
+  void sendMessage(ChatRequestBody chatRequestBody) async {
+    emit(ChatLoading());
 
-  final response = await chatRepo.sendMessageRepo(chatRequestBody);
+    final response = await chatRepo.sendMessageRepo(chatRequestBody);
 
-  response.fold(
-    (failure) {
-      emit(ChatFailure(failure.errMessage));
-    },
-    (chatSuccess) {
-      emit(ChatSuccess(chatSuccess));
-    },
-  );
-}
+    response.fold(
+      (failure) {
+        emit(ChatFailure(failure.errMessage));
+      },
+      (chatSuccess) {
+        emit(ChatSuccess(chatSuccess));
+      },
+    );
+  }
 }
