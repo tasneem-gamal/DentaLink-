@@ -16,6 +16,15 @@ class ChatBlocListener extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<ChatCubit, ChatState>(
       listener: (context, state) {
+        if (state is ChatLoading) {
+          final thinkingMessage = TextMessage(
+            id: 'thinking_message',
+            authorId: 'DentaLink',
+            createdAt: DateTime.now().toUtc(),
+            text: 'Thinking...',
+          );
+          chatController.insertMessage(thinkingMessage);
+        }
         if (state is ChatSuccess) {
           final response = state.chatResponseBody.data;
           final now = DateTime.now().toUtc();
@@ -32,8 +41,8 @@ class ChatBlocListener extends StatelessWidget {
               id: '${now.millisecondsSinceEpoch}_image',
               authorId: 'DentaLink',
               createdAt: now,
-              source: response.imageUrl!, 
-              text: 'Diagnosis Image', 
+              source: response.imageUrl!,
+              text: 'Diagnosis Image',
               width: 300,
               height: 300,
             );
