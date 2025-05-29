@@ -23,7 +23,7 @@ class AppBottomNavigationBar extends StatelessWidget {
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
         BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.bagShopping), label: 'Shop'),
-        BottomNavigationBarItem(icon: Icon(Icons.filter_center_focus), label: 'AI-scan'),
+        BottomNavigationBarItem(icon: Icon(Icons.smart_toy), label: 'ChatBot'),
         BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.cartShopping), label: 'Cart'),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
       ],
