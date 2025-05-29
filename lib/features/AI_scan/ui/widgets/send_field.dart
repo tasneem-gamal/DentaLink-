@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dentalink/core/helpers/constants.dart';
 import 'package:dentalink/core/helpers/spacing.dart';
 import 'package:dentalink/core/theming/colors.dart';
+import 'package:dentalink/features/AI_scan/ui/widgets/image_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
 import 'package:image_picker/image_picker.dart';
@@ -43,14 +44,14 @@ class _SendFieldState extends State<SendField> {
           mainAxisSize: MainAxisSize.min,
           children: [
             if (_pickedImage != null)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Image.file(
-                      _pickedImage!,
-                      width: 100,
-                      height: 100,
-                    ),
-                  ),
+            ImageContainer(
+              pickedImage: _pickedImage,
+              onTap: () {
+                setState(() {
+                  _pickedImage = null;
+                });
+              },
+            ),
             Row(
               children: [
                 Expanded(
@@ -59,6 +60,7 @@ class _SendFieldState extends State<SendField> {
                     focusNode: widget._focusNode,
                     decoration: InputDecoration(
                       hintText: 'Type your message...',
+                      fillColor: Colors.white,
                       prefixIcon: IconButton(
                           onPressed: () {
                             if (_overlayEntry == null) {
@@ -166,3 +168,5 @@ class _SendFieldState extends State<SendField> {
     _overlayEntry = null;
   }
 }
+
+
