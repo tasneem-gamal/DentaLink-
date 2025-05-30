@@ -1,14 +1,14 @@
 import 'package:dentalink/features/home/data/models/tool_data.dart';
 
-class ExchangeResponseBody {
+class AllExchangeToolsResponseBody {
   List<ToolData>? toolData;
 
-  ExchangeResponseBody({
+  AllExchangeToolsResponseBody({
     this.toolData
   });
 
-    factory ExchangeResponseBody.fromJson(List<dynamic> json) {
-    return ExchangeResponseBody(
+    factory AllExchangeToolsResponseBody.fromJson(List<dynamic> json) {
+    return AllExchangeToolsResponseBody(
       toolData: json.map((e) => ToolData.fromJson(e)).toList(),
     );
   }
