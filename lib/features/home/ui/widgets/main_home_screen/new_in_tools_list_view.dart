@@ -4,7 +4,6 @@ import 'package:dentalink/core/routing/routes.dart';
 import 'package:dentalink/core/widgets/item_container_patient_tool.dart';
 import 'package:dentalink/features/home/data/models/tool_data.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NewInToolsListView extends StatelessWidget {
   const NewInToolsListView({
@@ -15,7 +14,7 @@ class NewInToolsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 240.h,
+      height: MediaQuery.of(context).size.height * 0.32,
       child: ListView.separated(
         separatorBuilder: (context, index) => horizontalSpace(10),
         scrollDirection: Axis.horizontal,
