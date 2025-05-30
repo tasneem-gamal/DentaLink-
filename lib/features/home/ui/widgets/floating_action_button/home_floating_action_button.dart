@@ -56,7 +56,7 @@ class _HomeFloatingActionButtonState extends State<HomeFloatingActionButton> {
               text: 'Add Tool',
               image: 'assets/images/tools_icon.png',
               rightPosition: 20.w,
-              bottomPosition: 210.h,
+              bottomPosition: 220.h,
             ),
             AddActionFloatingButton(
               onTap: () {
@@ -66,7 +66,7 @@ class _HomeFloatingActionButtonState extends State<HomeFloatingActionButton> {
               text: 'Add Patient',
               image: 'assets/images/doctor_icon.png',
               rightPosition: 20.w,
-              bottomPosition: 150.h,
+              bottomPosition: 160.h,
             ),
           ],
         ),
