@@ -42,47 +42,45 @@ class ItemContainerPatientTool extends StatelessWidget {
       ),
       child: Padding(
         padding: EdgeInsets.all(14.w),
-        child: Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset(image, width: imageWidth ?? 100.w),
-                  verticalSpace(12),
-                  Text(
-                    itemTitle,
-                    style: CustomTextStyles.font12BlackMedium(context),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  LabelTextApp(
-                    label: firstLabel,
-                    text: firstLabelText,
-                  ),
-                  LabelTextApp(
-                    label: secondLabel,
-                    text: secondLabelText,
-                    textStyleText: CustomTextStyles.font12MainBlueRegular(context),
-                  ),
-                ],
-              ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: GestureDetector(
-                  onTap: onTap,
-                  child: CircleAvatar(
-                    radius: 20.r,
-                    backgroundColor: ColorsManager.mainBlue,
-                    child: Icon(Icons.arrow_forward_ios, color: Colors.white, size: 16.sp),
-                  ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(image, width: imageWidth ?? 100.w),
+                verticalSpace(12),
+                Text(
+                  itemTitle,
+                  style: CustomTextStyles.font12BlackMedium(context),
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                LabelTextApp(
+                  label: firstLabel,
+                  text: firstLabelText,
+                ),
+                LabelTextApp(
+                  label: secondLabel,
+                  text: secondLabelText,
+                  textStyleText: CustomTextStyles.font12MainBlueRegular(context),
+                ),
+              ],
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: GestureDetector(
+                onTap: onTap,
+                child: CircleAvatar(
+                  radius: 20.r,
+                  backgroundColor: ColorsManager.mainBlue,
+                  child: Icon(Icons.arrow_forward_ios, color: Colors.white, size: 16.sp),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

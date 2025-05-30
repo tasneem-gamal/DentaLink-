@@ -31,7 +31,10 @@ class ToolsGridView extends StatelessWidget {
           secondLabel: 'Description: ',
           secondLabelText: toolData[index].description,
           onTap: () {
-            context.pushNamed(Routes.toolDetails);
+            context.pushNamed(
+              Routes.toolDetails,
+              arguments: toolData[index]
+            );
           },
         ),
     ));
