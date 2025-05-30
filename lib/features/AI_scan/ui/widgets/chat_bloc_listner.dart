@@ -24,6 +24,8 @@ class ChatBlocListener extends StatelessWidget {
             text: 'Thinking...',
           );
           chatController.insertMessage(thinkingMessage);
+        } else {
+          chatController.removeMessageById('thinking_message');
         }
         if (state is ChatSuccess) {
           final response = state.chatResponseBody.data;
