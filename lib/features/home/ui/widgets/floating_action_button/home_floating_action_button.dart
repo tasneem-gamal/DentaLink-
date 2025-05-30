@@ -41,32 +41,39 @@ class _HomeFloatingActionButtonState extends State<HomeFloatingActionButton> {
   }
 
   OverlayEntry _createOverlayEntry() {
-    return OverlayEntry(
-      builder: (context) => Stack(
-        children: [
-          AddActionFloatingButton(
-            onTap: (){
-              toggleContainer(closeOnly: true);
-              context.pushNamed(Routes.addTool);
-            },
-            text: 'Add Tool',
-            image: 'assets/images/tools_icon.png',
-            rightPosition: 20.w,
-            bottomPosition: 210.h,
-          ),
-          AddActionFloatingButton(
-            onTap: (){
-              toggleContainer(closeOnly: true);
-              context.pushNamed(Routes.addPatient);
-            },
-            text: 'Add Patient',
-            image: 'assets/images/doctor_icon.png',
-            rightPosition: 20.w,
-            bottomPosition: 150.h,
-          ),
-      ]),
-    );
-  }
+  return OverlayEntry(
+    builder: (context) => Positioned.fill(
+      child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: removeOverlay,
+        child: Stack(
+          children: [
+            AddActionFloatingButton(
+              onTap: () {
+                toggleContainer(closeOnly: true);
+                context.pushNamed(Routes.addTool).then((_) => removeOverlay());
+              },
+              text: 'Add Tool',
+              image: 'assets/images/tools_icon.png',
+              rightPosition: 20.w,
+              bottomPosition: 210.h,
+            ),
+            AddActionFloatingButton(
+              onTap: () {
+                toggleContainer(closeOnly: true);
+                context.pushNamed(Routes.addPatient).then((_) => removeOverlay());
+              },
+              text: 'Add Patient',
+              image: 'assets/images/doctor_icon.png',
+              rightPosition: 20.w,
+              bottomPosition: 150.h,
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
 
   void toggleContainer({bool closeOnly = false}) {
   if (isPressed || closeOnly) {
