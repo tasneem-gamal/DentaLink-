@@ -132,8 +132,16 @@ class _SendFieldState extends State<SendField> {
                     ListTile(
                       leading: const Icon(Icons.photo_camera),
                       title: const Text('Scan Photo'),
-                      onTap: () {
+                      onTap: () async {
                         _removeOverlay();
+                        final picker = ImagePicker();
+                        final picked =
+                            await picker.pickImage(source: ImageSource.camera);
+                        if (picked != null) {
+                          setState(() {
+                            _pickedImage = File(picked.path);
+                          });
+                        }
                       },
                     ),
                     const Divider(thickness: 1, color: ColorsManager.moreLightGray,),
