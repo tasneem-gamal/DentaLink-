@@ -122,6 +122,7 @@ class AppRouter {
                             getIt<NewInToolsCubit>()..getNewInTools(),
                       ),
                       BlocProvider(create: (context) => getIt<SignOutCubit>()),
+                      BlocProvider(create: (context) => getIt<AllToolsCubit>()..getTools())
                     ],
                     child: HomeView(
                       patientData: patientData,
@@ -197,7 +198,8 @@ class AppRouter {
 
       //shop and related
       case Routes.shopView:
-        return MaterialPageRoute(builder: (_) => const ShopView());
+        return MaterialPageRoute(
+            builder: (_) => const ShopView());
 
       //cart and related
       case Routes.cartView:
