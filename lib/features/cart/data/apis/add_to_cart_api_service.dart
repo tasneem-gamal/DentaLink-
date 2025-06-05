@@ -16,6 +16,7 @@ class AddToCartApiService {
   Future<AddToCartResponseModel> addToCartService(AddToCartRequestModel addToCartRequestModel) async{
     final response = await dio.post(
       '${ApiConstants.baseUrl}${ApiConstants.addToCart}',
+      data: addToCartRequestModel.toJson(),
       options: Options(
         headers: {
           "Authorization": "Bearer ${await SharedPreferenceHelper.getSecuredString(SharedPreferencesKeys.userToken)}",

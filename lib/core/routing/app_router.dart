@@ -14,6 +14,7 @@ import 'package:dentalink/features/auth/login/logic/login_cubit/login_cubit.dart
 import 'package:dentalink/features/auth/login/ui/login_view.dart';
 import 'package:dentalink/features/auth/sign_up/logic/sign_cubit/sign_cubit.dart';
 import 'package:dentalink/features/auth/sign_up/ui/sign_up_view.dart';
+import 'package:dentalink/features/cart/logic/add_to_cart_cubit/add_to_cart_cubit.dart';
 import 'package:dentalink/features/cart/ui/widgets/cart_view_body.dart';
 import 'package:dentalink/features/cart/ui/widgets/checkout/checkout_confirm/checkout_confirm.dart';
 import 'package:dentalink/features/cart/ui/widgets/checkout/checkout_pay/checkout_pay_view.dart';
@@ -122,7 +123,9 @@ class AppRouter {
                             getIt<NewInToolsCubit>()..getNewInTools(),
                       ),
                       BlocProvider(create: (context) => getIt<SignOutCubit>()),
-                      BlocProvider(create: (context) => getIt<AllToolsCubit>()..getTools())
+                      BlocProvider(
+                          create: (context) =>
+                              getIt<AllToolsCubit>()..getTools())
                     ],
                     child: HomeView(
                       patientData: patientData,
@@ -162,9 +165,16 @@ class AppRouter {
       case Routes.toolDetails:
         final toolData = settings.arguments as ToolData;
         return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (context) =>
-                      getIt<RelatedToolsCubit>()..getRelatedTools(toolData),
+            builder: (_) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (context) =>
+                          getIt<RelatedToolsCubit>()..getRelatedTools(toolData),
+                    ),
+                    BlocProvider(
+                      create: (context) => getIt<AddToCartCubit>(),
+                    ),
+                  ],
                   child: ToolDetailsView(
                     toolData: toolData,
                   ),
@@ -198,8 +208,7 @@ class AppRouter {
 
       //shop and related
       case Routes.shopView:
-        return MaterialPageRoute(
-            builder: (_) => const ShopView());
+        return MaterialPageRoute(builder: (_) => const ShopView());
 
       //cart and related
       case Routes.cartView:

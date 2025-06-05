@@ -19,6 +19,9 @@ import 'package:dentalink/features/auth/login/logic/login_cubit/login_cubit.dart
 import 'package:dentalink/features/auth/sign_up/data/apis/sign_api_service.dart';
 import 'package:dentalink/features/auth/sign_up/data/repo/sign_repo.dart';
 import 'package:dentalink/features/auth/sign_up/logic/sign_cubit/sign_cubit.dart';
+import 'package:dentalink/features/cart/data/apis/add_to_cart_api_service.dart';
+import 'package:dentalink/features/cart/data/repo/add_to_cart_repo.dart';
+import 'package:dentalink/features/cart/logic/add_to_cart_cubit/add_to_cart_cubit.dart';
 import 'package:dentalink/features/home/data/apis/add_patient_service/add_patient_api_service.dart';
 import 'package:dentalink/features/home/data/apis/all_patients/all_patient_api_service.dart';
 import 'package:dentalink/features/home/data/apis/all_tools_service/all_tools_api_service.dart';
@@ -138,4 +141,8 @@ void setUpGetIt() {
   getIt.registerSingleton<ChatRepo>(ChatRepo(getIt.get<ChatApiService>()));
   getIt.registerFactory<ChatCubit>(() => ChatCubit(getIt()));
 
+  //add to cart
+  getIt.registerSingleton<AddToCartApiService>(AddToCartApiService());
+  getIt.registerSingleton<AddToCartRepo>(AddToCartRepo(getIt.get<AddToCartApiService>()));
+  getIt.registerFactory<AddToCartCubit>(() => AddToCartCubit(getIt()));
 }
