@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:dentalink/features/home/data/models/add_patient/add_patient_request_body.dart';
 import 'package:dentalink/features/home/data/models/add_patient/add_patient_response_body.dart';
-import 'package:dentalink/features/home/data/repo/add_patient_repo/add_patient_repo.dart';
+import 'package:dentalink/features/home/data/repo/add_patient_repo.dart';
 import 'package:flutter/material.dart';
 
 part 'add_patient_state.dart';

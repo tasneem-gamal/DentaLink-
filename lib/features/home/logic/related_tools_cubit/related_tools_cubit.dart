@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dentalink/features/home/data/models/tool_data.dart';
-import 'package:dentalink/features/home/data/repo/related_tools/related_tools_repo.dart';
+import 'package:dentalink/features/home/data/repo/related_tools_repo.dart';
 
 part 'related_tools_state.dart';
 

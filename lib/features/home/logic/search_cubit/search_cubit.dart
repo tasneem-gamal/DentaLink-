@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dentalink/features/home/data/models/patient_data.dart';
-import 'package:dentalink/features/home/data/repo/search_repo/search_repo.dart';
+import 'package:dentalink/features/home/data/repo/search_repo.dart';
 
 part 'search_state.dart';
 

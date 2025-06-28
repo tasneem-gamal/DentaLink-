@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dentalink/features/home/data/models/patient_data.dart';
-import 'package:dentalink/features/home/data/repo/latest_patients/latest_patients_repo.dart';
+import 'package:dentalink/features/home/data/repo/latest_patients_repo.dart';
 
 part 'latest_patients_state.dart';
 
