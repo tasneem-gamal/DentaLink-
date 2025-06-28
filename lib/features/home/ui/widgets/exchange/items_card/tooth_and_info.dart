@@ -1,32 +1,34 @@
 import 'package:dentalink/core/helpers/spacing.dart';
 import 'package:dentalink/core/widgets/label_text_app.dart';
+import 'package:dentalink/features/home/data/models/exchange/all_exchange_response_model.dart';
 import 'package:flutter/material.dart';
 
 class ToothAndInfo extends StatelessWidget {
   const ToothAndInfo({
-    super.key,
+    super.key, required this.exchangeData,
   });
-
+  
+  final ExchangeData exchangeData;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Image.asset('assets/images/exchange_tooth.png'),
         horizontalSpace(16),
-        const Expanded(
+        Expanded(
           child: Column(
             children: [
               LabelTextApp(
                 label: 'Publisher: ', 
-                text: 'Dr Mahmoud'
+                text: exchangeData.createdBy?.name ?? exchangeData.publisher,
               ),
               LabelTextApp(
                 label: 'Name: ', 
-                text: 'Canines'
+                text: exchangeData.name
               ),
               LabelTextApp(
                 label: 'Exchange with: ', 
-                text: 'secound molar'
+                text: exchangeData.exchangeWith
               ),
             ],
           ),

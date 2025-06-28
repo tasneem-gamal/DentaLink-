@@ -1,12 +1,15 @@
 import 'package:dentalink/core/theming/colors.dart';
 import 'package:dentalink/core/theming/styles.dart';
+import 'package:dentalink/features/home/data/models/exchange/all_exchange_response_model.dart';
 import 'package:dentalink/features/home/ui/widgets/exchange/items_card/edit_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 class EditButtonAndDate extends StatelessWidget {
   const EditButtonAndDate({
-    super.key,
+    super.key, required this.exchangeData,
   });
+
+  final ExchangeData exchangeData;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,7 @@ class EditButtonAndDate extends StatelessWidget {
           icon: const Icon(Icons.edit, color: ColorsManager.mainBlue,)
         ),
         Text(
-          '20/10/2026',
+          exchangeData.createdAt,
           style: CustomTextStyles.font12LightGrayRegular(context),
         )
       ],

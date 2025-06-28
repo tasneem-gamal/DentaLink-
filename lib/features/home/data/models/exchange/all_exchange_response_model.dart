@@ -22,6 +22,7 @@ class ExchangeData {
   final String createdAt;
   final int v;
   final bool isFavExchange;
+  final CreatedBy? createdBy;
 
   ExchangeData({
     required this.id,
@@ -35,22 +36,39 @@ class ExchangeData {
     required this.createdAt,
     required this.v,
     required this.isFavExchange,
+    this.createdBy,
   });
 
   factory ExchangeData.fromJson(Map<String, dynamic> json) {
-  return ExchangeData(
-    id: json['_id'] ?? '',
-    publisher: json['publisher'] ?? '',
-    name: json['name'] ?? '',
-    toothName: json['toothName'] ?? '',
-    exchangeWith: json['exchangeWith'] ?? '',
-    notes: json['notes'] ?? '',
-    contact: json['contact'] ?? '',
-    images: json['images'] != null ? List<String>.from(json['images']) : [],
-    createdAt: json['createdAt'] ?? '',
-    v: json['__v'] ?? 0,
-    isFavExchange: json['isFavExchange'] ?? false,
-  );
+    return ExchangeData(
+      id: json['_id'] ?? '',
+      publisher: json['publisher'] ?? '',
+      name: json['name'] ?? '',
+      toothName: json['toothName'] ?? '',
+      exchangeWith: json['exchangeWith'] ?? '',
+      notes: json['notes'] ?? '',
+      contact: json['contact'] ?? '',
+      images: json['images'] != null ? List<String>.from(json['images']) : [],
+      createdAt: json['createdAt'] ?? '',
+      v: json['__v'] ?? 0,
+      isFavExchange: json['isFavExchange'] ?? false,
+      createdBy: json['createdBy'] != null ? CreatedBy.fromJson(json['createdBy']) : null,
+    );
+  }
 }
 
+class CreatedBy {
+  final String id;
+  final String name;
+  final String email;
+
+  CreatedBy({required this.id, required this.name, required this.email});
+
+  factory CreatedBy.fromJson(Map<String, dynamic> json) {
+    return CreatedBy(
+      id: json['_id'] ?? '',
+      name: json['name'] ?? '',
+      email: json['email'] ?? '',
+    );
+  }
 }

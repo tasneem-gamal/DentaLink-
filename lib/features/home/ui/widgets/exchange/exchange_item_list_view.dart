@@ -14,7 +14,9 @@ class ExchangeItemListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.separated(
-        itemBuilder: (context, index) => const ExchangeContainerItem(), 
+        itemBuilder: (context, index) => ExchangeContainerItem(
+          exchangeData: exchangeList[index],
+        ), 
         separatorBuilder: (context, index) => verticalSpace(16), 
         itemCount: exchangeList.length
       ),
