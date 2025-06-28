@@ -21,7 +21,7 @@ class OnBoardingViewBody extends StatelessWidget {
               title: "Struggling to find patients?\n We’ve got you covered!",
               subTitle: 'Turn your dental training into real-life success\n stories. with ',
               wordSubTitle: 'DENTALINK',
-              alignment: Alignment.bottomLeft,
+              alignment: Alignment.centerLeft,
               image: 'assets/images/onboarding_1.png',
             ),
             OnBoardingPage(

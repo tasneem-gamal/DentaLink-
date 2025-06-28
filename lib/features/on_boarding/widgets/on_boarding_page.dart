@@ -47,7 +47,10 @@ class OnBoardingPage extends StatelessWidget {
         Align(
           alignment: alignment,
           child: SizedBox(
-            child: Image.asset(image),
+            child: Image.asset(
+              image,
+              height: MediaQuery.of(context).size.height * 0.5,
+            ),
           ),
         )
       ],
