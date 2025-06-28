@@ -34,7 +34,7 @@ class ToolData {
       category: json['category'] ?? '',
       description: json['description'] ?? '',
       images:
-          (json['images'] as List?)?.map((e) => e.toString()).toList() ?? [],
+          (json['image'] as List?)?.map((e) => e.toString()).toList() ?? [],
       reviews: (json['reviews'] as List?)?.map((e) => e.toString()).toList() ?? [],
       createdBy: json['createdBy'] != null
           ? CreatedBy.fromJson(json['createdBy'])
