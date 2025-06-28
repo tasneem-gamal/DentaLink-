@@ -22,6 +22,7 @@ import 'package:dentalink/features/cart/ui/widgets/checkout/order_details/order_
 import 'package:dentalink/features/home/data/models/patient_data.dart';
 import 'package:dentalink/features/home/data/models/tool_data.dart';
 import 'package:dentalink/features/home/logic/add_patient_cubit/add_patient_cubit.dart';
+import 'package:dentalink/features/home/logic/all_exchange_tools/all_exchange_tools_cubit.dart';
 import 'package:dentalink/features/home/logic/all_patients_cubit/all_patients_cubit.dart';
 import 'package:dentalink/features/home/logic/all_tools_cubit/all_tools_cubit.dart';
 import 'package:dentalink/features/home/logic/latest_patients_cubit/latest_patients_cubit.dart';
@@ -125,7 +126,13 @@ class AppRouter {
                       BlocProvider(create: (context) => getIt<SignOutCubit>()),
                       BlocProvider(
                           create: (context) =>
-                              getIt<AllToolsCubit>()..getTools())
+                              getIt<AllToolsCubit>()..getTools()),
+                      BlocProvider(
+                          create: (context) =>
+                              getIt<AllPatientsCubit>()..getPatients()),
+                      BlocProvider(
+                          create: (context) =>
+                              getIt<AllExchangeToolsCubit>()..getexchanges())
                     ],
                     child: HomeView(
                       patientData: patientData,
@@ -201,7 +208,11 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const SpecificShopView());
 
       case Routes.exchangeView:
-        return MaterialPageRoute(builder: (_) => const ExchangeView());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => getIt<AllExchangeToolsCubit>()..getexchanges(),
+                  child: const ExchangeView(),
+                ));
 
       case Routes.favoritesView:
         return MaterialPageRoute(builder: (_) => const FavoritesView());

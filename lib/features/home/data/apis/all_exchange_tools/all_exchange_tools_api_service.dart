@@ -2,7 +2,7 @@ import 'package:dentalink/core/helpers/constants.dart';
 import 'package:dentalink/core/helpers/shared_preference.dart';
 import 'package:dentalink/core/networking/api_constants.dart';
 import 'package:dentalink/core/networking/dio_factory.dart';
-import 'package:dentalink/features/home/data/models/all_exchange_tools/all_exchange_tools_response_body.dart';
+import 'package:dentalink/features/home/data/models/exchange/all_exchange_response_model.dart';
 import 'package:dio/dio.dart';
 
 class AllExchangeToolsApiService {
@@ -12,7 +12,7 @@ class AllExchangeToolsApiService {
     dio = DioFactory.getDio();
   }
 
-  Future<AllExchangeToolsResponseBody> allExchangeToolsService() async{
+  Future<AllExchangeResponseModel> allExchangeToolsService() async{
     try{
       final response = await dio.get(
         '${ApiConstants.baseUrl}${ApiConstants.allExchangeTools}',
@@ -22,7 +22,7 @@ class AllExchangeToolsApiService {
           },
         ),
       );
-      return AllExchangeToolsResponseBody.fromJson(response.data);
+      return AllExchangeResponseModel.fromJson(response.data);
 
     } catch (e){
       throw Exception('Failed to load data: $e');

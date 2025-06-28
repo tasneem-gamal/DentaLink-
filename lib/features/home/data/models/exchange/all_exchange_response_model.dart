@@ -38,18 +38,19 @@ class ExchangeData {
   });
 
   factory ExchangeData.fromJson(Map<String, dynamic> json) {
-    return ExchangeData(
-      id: json['_id'] as String,
-      publisher: json['publisher'] as String,
-      name: json['name'] as String,
-      toothName: json['toothName'] as String,
-      exchangeWith: json['exchangeWith'] as String,
-      notes: json['notes'] as String,
-      contact: json['contact'] as String,
-      images: List<String>.from(json['images']),
-      createdAt: json['createdAt'] as String,
-      v: json['__v'] as int,
-      isFavExchange: json['isFavExchange'] as bool,
-    );
-  }
+  return ExchangeData(
+    id: json['_id'] ?? '',
+    publisher: json['publisher'] ?? '',
+    name: json['name'] ?? '',
+    toothName: json['toothName'] ?? '',
+    exchangeWith: json['exchangeWith'] ?? '',
+    notes: json['notes'] ?? '',
+    contact: json['contact'] ?? '',
+    images: json['images'] != null ? List<String>.from(json['images']) : [],
+    createdAt: json['createdAt'] ?? '',
+    v: json['__v'] ?? 0,
+    isFavExchange: json['isFavExchange'] ?? false,
+  );
+}
+
 }
