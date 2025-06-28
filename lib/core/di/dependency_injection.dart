@@ -100,7 +100,7 @@ void setUpGetIt() {
   //all patients
   getIt.registerSingleton<AllPatientApiService>(AllPatientApiService());
   getIt.registerSingleton<AllPatientsRepo>(AllPatientsRepo(getIt.get<AllPatientApiService>()));
-  getIt.registerLazySingleton<AllPatientsCubit>(() => AllPatientsCubit(getIt()));
+  getIt.registerFactory<AllPatientsCubit>(() => AllPatientsCubit(getIt()));
 
   //latest patients
   getIt.registerSingleton<LatestPatientsApiService>(LatestPatientsApiService());
@@ -128,7 +128,7 @@ void setUpGetIt() {
   //all tools
   getIt.registerSingleton<AllToolsApiService>(AllToolsApiService());
   getIt.registerSingleton<AllToolsRepo>(AllToolsRepo(getIt.get<AllToolsApiService>()));
-  getIt.registerLazySingleton<AllToolsCubit>(() => AllToolsCubit(getIt()));
+  getIt.registerFactory<AllToolsCubit>(() => AllToolsCubit(getIt()));
 
   //related tools => tool details
   getIt.registerSingleton<RelatedToolsApiService>(RelatedToolsApiService());
