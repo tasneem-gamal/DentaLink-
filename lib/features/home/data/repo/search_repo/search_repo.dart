@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dentalink/core/networking/api_error_handler.dart';
-import 'package:dentalink/features/home/data/apis/search/search_api_service.dart';
+import 'package:dentalink/features/home/data/apis/search_api_service.dart';
 import 'package:dentalink/features/home/data/models/patient_data.dart';
 
 class SearchRepo {

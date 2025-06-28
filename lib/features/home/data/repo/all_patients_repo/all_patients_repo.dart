@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dentalink/core/networking/api_error_handler.dart';
-import 'package:dentalink/features/home/data/apis/all_patients/all_patient_api_service.dart';
+import 'package:dentalink/features/home/data/apis/all_patient_api_service.dart';
 import 'package:dentalink/features/home/data/models/all_patients/all_patients_response_body.dart';
 
 class AllPatientsRepo {
