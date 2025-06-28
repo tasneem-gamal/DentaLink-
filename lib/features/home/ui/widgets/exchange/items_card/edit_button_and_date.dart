@@ -15,8 +15,10 @@ class EditButtonAndDate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         IconButton(
+          padding: const EdgeInsets.only(top: 20),
           onPressed: (){
             showModalBottomSheet(
                 backgroundColor: Colors.white,
