@@ -18,4 +18,5 @@ class ApiConstants {
   static const String allExchangeTools = "exchanges";
   static const String addExchanges = "exchanges/add";
   static const String addToCart = "cart/add";
+  static const String getCartItems = "cart";
 }

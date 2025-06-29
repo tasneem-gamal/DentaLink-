@@ -11,7 +11,7 @@ class AllExchangeToolsCubit extends Cubit<AllExchangeToolsState> {
 
   List<ExchangeData> allExchangesList = [];
 
-  void getexchanges() async{
+  void getExchanges() async{
     emit(AllExchangeToolsLoading());
     final response = await allExchangeToolsRepo.getAllExchangeTools();
     response.fold(

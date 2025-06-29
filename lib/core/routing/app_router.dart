@@ -15,6 +15,7 @@ import 'package:dentalink/features/auth/login/ui/login_view.dart';
 import 'package:dentalink/features/auth/sign_up/logic/sign_cubit/sign_cubit.dart';
 import 'package:dentalink/features/auth/sign_up/ui/sign_up_view.dart';
 import 'package:dentalink/features/cart/logic/add_to_cart_cubit/add_to_cart_cubit.dart';
+import 'package:dentalink/features/cart/logic/cubit/get_cart_items_cubit.dart';
 import 'package:dentalink/features/cart/ui/widgets/cart_view_body.dart';
 import 'package:dentalink/features/cart/ui/widgets/checkout/checkout_confirm/checkout_confirm.dart';
 import 'package:dentalink/features/cart/ui/widgets/checkout/checkout_pay/checkout_pay_view.dart';
@@ -134,7 +135,10 @@ class AppRouter {
                               getIt<AllPatientsCubit>()..getPatients()),
                       BlocProvider(
                           create: (context) =>
-                              getIt<AllExchangeToolsCubit>()..getexchanges())
+                              getIt<AllExchangeToolsCubit>()..getExchanges()),
+                      BlocProvider(
+                          create: (context) =>
+                              getIt<GetCartItemsCubit>()..getCartItems())
                     ],
                     child: HomeView(
                       patientData: patientData,
@@ -226,7 +230,7 @@ class AppRouter {
                   providers: [
                     BlocProvider(
                       create: (context) =>
-                          getIt<AllExchangeToolsCubit>()..getexchanges(),
+                          getIt<AllExchangeToolsCubit>()..getExchanges(),
                     ),
                     BlocProvider(
                       create: (context) => getIt<AddExchangeToolCubit>(),
@@ -244,7 +248,11 @@ class AppRouter {
 
       //cart and related
       case Routes.cartView:
-        return MaterialPageRoute(builder: (_) => const CartViewBody());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => getIt<GetCartItemsCubit>()..getCartItems(),
+                  child: const CartViewBody(),
+                ));
 
       case Routes.checkoutConfirmView:
         return MaterialPageRoute(builder: (_) => const CheckoutConfirm());
