@@ -37,6 +37,7 @@ class SearchFieldAndAddButton extends StatelessWidget {
                 padding: EdgeInsets.zero,
               ),
               onPressed: () {
+                final cubit = context.read<AddExchangeToolCubit>();
                 showModalBottomSheet(
                   backgroundColor: Colors.white,
                   isScrollControlled: true,
@@ -45,7 +46,9 @@ class SearchFieldAndAddButton extends StatelessWidget {
                     value: BlocProvider.of<AddExchangeToolCubit>(context),
                     child: const AddBottomSheet(),
                   ),
-                );
+                ).whenComplete((){
+                  cubit.resetState();
+                });
               },
               child: const Icon(
                 Icons.add,

@@ -1,5 +1,5 @@
 import 'package:dentalink/features/home/logic/all_tools_cubit/all_tools_cubit.dart';
-import 'package:dentalink/features/home/ui/widgets/shimmer_loading_grid_view.dart';
+import 'package:dentalink/core/widgets/shimmer_loading_grid_view.dart';
 import 'package:dentalink/features/shop/ui/widgets/shop_item_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

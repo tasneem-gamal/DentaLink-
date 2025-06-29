@@ -12,6 +12,9 @@ class AddExchangeBlocListner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AddExchangeToolCubit, AddExchangeToolState>(
+      listenWhen: (previous, current){
+        return previous != current;
+      },
       listener: (context, state) {
         if (state is AddExchangeToolLoading) {
           showDialog(
@@ -20,6 +23,7 @@ class AddExchangeBlocListner extends StatelessWidget {
           );
         } else if (state is AddExchangeToolSUccess) {
           context.pop();
+          context.read<AddExchangeToolCubit>().resetState();
           showSuccessDialog(context);
         } else if (state is AddExchangeToolFailure) {
           setupErrorState(context, state.errMessage);

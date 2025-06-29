@@ -24,4 +24,9 @@ class AddExchangeToolCubit extends Cubit<AddExchangeToolState> {
       },
     );
   }
+
+  void resetState() {
+  emit(AddExchangeToolInitial());
+}
+
 }

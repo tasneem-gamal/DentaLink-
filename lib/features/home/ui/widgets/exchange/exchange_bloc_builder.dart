@@ -1,4 +1,4 @@
-import 'package:dentalink/core/widgets/custom_loading_indicator.dart';
+import 'package:dentalink/core/widgets/shimmer_loading_list_view.dart';
 import 'package:dentalink/features/home/logic/all_exchange_tools/all_exchange_tools_cubit.dart';
 import 'package:dentalink/features/home/ui/widgets/exchange/exchange_item_list_view.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ class ExchangeBlocBuilder extends StatelessWidget {
         current is AllExchangeToolsFailure,
       builder: (context, state) {
         if(state is AllExchangeToolsLoading){
-          return const CustomLoadingIndicator();
+          return const ShimmerLoadingListView();
         }
         else if(state is AllExchangeToolsSuccess){
           return ExchangeItemListView(

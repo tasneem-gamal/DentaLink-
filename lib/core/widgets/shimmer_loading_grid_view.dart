@@ -1,4 +1,4 @@
-import 'package:dentalink/features/home/ui/widgets/shimmer_loading.dart';
+import 'package:dentalink/core/widgets/shimmer_loading.dart';
 import 'package:flutter/material.dart';
 
 class ShimmerLoadingGridView extends StatelessWidget {
