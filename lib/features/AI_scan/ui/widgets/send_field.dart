@@ -120,7 +120,7 @@ class _SendFieldState extends State<SendField> {
           children: [
             Positioned(
               left: offset.dx + 24,
-              top: offset.dy + MediaQuery.of(context).size.height * 0.68, 
+              top: offset.dy + MediaQuery.of(context).size.height * 0.65, 
               width: 200,
               child: Material(
                 color: ColorsManager.otherLightGrayShade,
