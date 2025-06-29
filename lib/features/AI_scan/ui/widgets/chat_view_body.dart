@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:dentalink/core/helpers/constants.dart';
 import 'package:dentalink/core/helpers/shared_preference.dart';
+import 'package:dentalink/core/theming/colors.dart';
+import 'package:dentalink/core/widgets/simple_markdown_text_message.dart';
 import 'package:dentalink/features/AI_scan/data/models/chat_request_body.dart';
 import 'package:dentalink/features/AI_scan/logic/chat_cubit/chat_cubit.dart';
 import 'package:dentalink/features/AI_scan/ui/widgets/chat_bloc_listner.dart';
@@ -82,6 +84,30 @@ class _ChatViewBodyState extends State<ChatViewBody> {
               return FlyerChatImageMessage(
                 message: message,
                 index: defaultWidget,
+              );
+            },
+            textMessageBuilder: (context, message, index) {
+              final isBot = message.authorId == 'DentaLink';
+              if (isBot) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 45, top: 20),
+                  child: CustomMarkdownTextMessage(message: message),
+                );
+              }
+              return Container(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: ColorsManager.mainBlue,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    message.text,
+                    style: const TextStyle(fontSize: 16, color: Colors.white),
+                  ),
+                ),
               );
             },
           ),

@@ -1,6 +1,6 @@
 import 'package:dentalink/core/helpers/spacing.dart';
 import 'package:dentalink/core/widgets/custom_app_button.dart';
-import 'package:dentalink/features/home/ui/widgets/exchange/bottom_sheet_add/text_fields.dart';
+//import 'package:dentalink/features/home/ui/widgets/exchange/bottom_sheet_add/text_fields.dart';
 import 'package:dentalink/features/home/ui/widgets/exchange/items_card/upload_image_exchange_edit.dart';
 import 'package:flutter/material.dart';
 
