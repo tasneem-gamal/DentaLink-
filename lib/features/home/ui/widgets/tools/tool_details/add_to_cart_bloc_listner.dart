@@ -16,7 +16,10 @@ class AddToCartBlocListner extends StatelessWidget {
         if (state is AddToCartLoading) {
         } else if (state is AddToCartSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Added to cart successfully"))
+            const SnackBar(
+              backgroundColor: Colors.green,
+              content: Text("Added to cart successfully")
+            )
           ); 
         } else if (state is AddToCartFailure) {
           ScaffoldMessenger.of(context).showSnackBar(

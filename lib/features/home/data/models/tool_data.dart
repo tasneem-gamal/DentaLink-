@@ -27,22 +27,39 @@ class ToolData {
       required this.isFavTool});
 
   factory ToolData.fromJson(Map<String, dynamic> json) {
+  return ToolData(
+    id: json['_id'] ?? '',
+    toolName: json['toolName'] ?? '',
+    price: json['price'] ?? 0,
+    category: json['category'] ?? '',
+    description: json['description'] ?? '',
+    images: (json['image'] as List?)?.map((e) => e.toString()).toList() ?? [],
+    reviews: (json['reviews'] as List?)?.map((e) => e.toString()).toList() ?? [],
+    createdBy: json['createdBy'] is Map<String, dynamic>
+        ? CreatedBy.fromJson(json['createdBy'])
+        : CreatedBy(id: json['createdBy'] ?? '', name: 'Unknown', email: ''),
+    createdAt: json['createdAt'] ?? '',
+    updatedAt: json['updatedAt'] ?? '',
+    v: json['__v'] ?? 0,
+    isFavTool: json['isFavTool'] ?? false,
+  );
+}
+
+
+  factory ToolData.empty() {
     return ToolData(
-      id: json['_id'] ?? '',
-      toolName: json['toolName'],
-      price: json['price'],
-      category: json['category'] ?? '',
-      description: json['description'] ?? '',
-      images:
-          (json['image'] as List?)?.map((e) => e.toString()).toList() ?? [],
-      reviews: (json['reviews'] as List?)?.map((e) => e.toString()).toList() ?? [],
-      createdBy: json['createdBy'] != null
-          ? CreatedBy.fromJson(json['createdBy'])
-          : CreatedBy(id: '', name: 'Unknown', email: ''),
-      createdAt: json['createdAt'] ?? '',
-      updatedAt: json['updatedAt'] ?? '',
-      v: json['__v'] ?? 0,
-      isFavTool: json['isFavTool'] ?? false,
+      id: '',
+      toolName: 'Unknown Tool',
+      price: 0,
+      category: '',
+      description: '',
+      images: [],
+      reviews: [],
+      createdBy: CreatedBy(id: '', name: 'Unknown', email: ''),
+      createdAt: '',
+      updatedAt: '',
+      v: 0,
+      isFavTool: false,
     );
   }
 }

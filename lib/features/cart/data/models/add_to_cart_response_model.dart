@@ -56,11 +56,14 @@ class CartItem {
   });
 
   factory CartItem.fromJson(Map<String, dynamic> json) {
-    return CartItem(
-      tool: ToolData.fromJson(json['tool']),
-      quantity: json['quantity'] ?? 0,
-      id: json['_id'] ?? '',
-      v: json['__v'] ?? 0,
-    );
-  }
+  return CartItem(
+    tool: json['tool'] != null 
+        ? ToolData.fromJson(json['tool']) 
+        : ToolData.empty(), 
+    quantity: json['quantity'] ?? 0,
+    id: json['_id'] ?? '',
+    v: json['__v'] ?? 0,
+  );
+}
+
 }
