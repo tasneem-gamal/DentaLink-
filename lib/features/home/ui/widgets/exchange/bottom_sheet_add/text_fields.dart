@@ -6,7 +6,18 @@ import 'package:flutter/material.dart';
 class TextFields extends StatelessWidget {
   const TextFields({
     super.key,
+    required this.nameController,
+    required this.toothNameController,
+    required this.exchangeWithController,
+    required this.notesController,
+    required this.phoneController,
   });
+
+  final TextEditingController nameController;
+  final TextEditingController toothNameController;
+  final TextEditingController exchangeWithController;
+  final TextEditingController notesController;
+  final TextEditingController phoneController;
 
   @override
   Widget build(BuildContext context) {
@@ -14,31 +25,31 @@ class TextFields extends StatelessWidget {
       children: [
         CustomTextFormField(
           validator: textValidations,
-          controller: TextEditingController(),
+          controller: nameController,
           hintText: 'Your name',
         ),
         verticalSpace(12),
         CustomTextFormField(
           validator: textValidations,
-          controller: TextEditingController(),
+          controller: toothNameController,
           hintText: 'Tooth name',
         ),
         verticalSpace(12),
         CustomTextFormField(
           validator: textValidations,
-          controller: TextEditingController(),
+          controller: exchangeWithController,
           hintText: 'Exchange with',
         ),
         verticalSpace(12),
         CustomTextFormField(
           validator: textValidations,
-          controller: TextEditingController(),
+          controller: notesController,
           hintText: 'Notes',
         ),
         verticalSpace(12),
         CustomTextFormField(
           validator: phoneValidate,
-          controller: TextEditingController(),
+          controller: phoneController,
           hintText: 'Phone number',
         ),
       ],

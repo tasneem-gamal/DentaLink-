@@ -21,6 +21,7 @@ import 'package:dentalink/features/cart/ui/widgets/checkout/checkout_pay/checkou
 import 'package:dentalink/features/cart/ui/widgets/checkout/order_details/order_details_view.dart';
 import 'package:dentalink/features/home/data/models/patient_data.dart';
 import 'package:dentalink/features/home/data/models/tool_data.dart';
+import 'package:dentalink/features/home/logic/add_exchange_tool/add_exchange_tool_cubit.dart';
 import 'package:dentalink/features/home/logic/add_patient_cubit/add_patient_cubit.dart';
 import 'package:dentalink/features/home/logic/all_exchange_tools/all_exchange_tools_cubit.dart';
 import 'package:dentalink/features/home/logic/all_patients_cubit/all_patients_cubit.dart';
@@ -209,8 +210,16 @@ class AppRouter {
 
       case Routes.exchangeView:
         return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (context) => getIt<AllExchangeToolsCubit>()..getexchanges(),
+            builder: (_) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (context) =>
+                          getIt<AllExchangeToolsCubit>()..getexchanges(),
+                    ),
+                    BlocProvider(
+                      create: (context) => getIt<AddExchangeToolCubit>(),
+                    ),
+                  ],
                   child: const ExchangeView(),
                 ));
 

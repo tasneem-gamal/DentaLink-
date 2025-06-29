@@ -14,6 +14,7 @@ class AddExchangeToolApiService {
   
   Future<AllExchangeResponseModel> addExchange(AddExchangeRequestBody addExchangeRequestBody)async {
     String? userToken = await SharedPreferenceHelper.getSecuredString(SharedPreferencesKeys.userToken);
+    final formData = await addExchangeRequestBody.toFormData();
 
     if (userToken == null || userToken.isEmpty) {
       throw Exception("No token found! User not authenticated.");
@@ -21,9 +22,11 @@ class AddExchangeToolApiService {
 
     final response = await dio.post(
       '${ApiConstants.baseUrl}${ApiConstants.addExchanges}',
-      data: addExchangeRequestBody.toJson(),
+      data: formData,
       options: Options(
         headers: {
+          "Accept": "application/json",
+          "Content-Type": "multipart/form-data",
           "Authorization": "Bearer $userToken",
         },
       ),

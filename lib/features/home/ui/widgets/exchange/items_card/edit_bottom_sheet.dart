@@ -34,7 +34,13 @@ class _EditBottomSheetState extends State<EditBottomSheet> {
             key: exchangeEditFormKey,
             child: Column(
               children: [
-                const TextFields(),
+                // TextFields(
+                //   nameController: nameController,
+                //   toothNameController: toothNameController,
+                //   exchangeWithController: exchangeWithController,
+                //   notesController: notesController,
+                //   phoneController: phoneController,
+                // ),
                 verticalSpace(12),
                 UploadImageExchangeEdit(
                   onFileUploaded: setFileUploaded,

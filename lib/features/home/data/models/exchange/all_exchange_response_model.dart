@@ -1,74 +1,21 @@
+import 'package:dentalink/features/home/data/models/exchange/exchange_data.dart';
+
 class AllExchangeResponseModel {
   final List<ExchangeData> exchanges;
 
   AllExchangeResponseModel({required this.exchanges});
 
-  factory AllExchangeResponseModel.fromJson(List<dynamic> json) {
-    return AllExchangeResponseModel(
-      exchanges: json.map((e) => ExchangeData.fromJson(e)).toList(),
-    );
-  }
-}
-
-class ExchangeData {
-  final String id;
-  final String publisher;
-  final String name;
-  final String toothName;
-  final String exchangeWith;
-  final String notes;
-  final String contact;
-  final List<String> images;
-  final String createdAt;
-  final int v;
-  final bool isFavExchange;
-  final CreatedBy? createdBy;
-
-  ExchangeData({
-    required this.id,
-    required this.publisher,
-    required this.name,
-    required this.toothName,
-    required this.exchangeWith,
-    required this.notes,
-    required this.contact,
-    required this.images,
-    required this.createdAt,
-    required this.v,
-    required this.isFavExchange,
-    this.createdBy,
-  });
-
-  factory ExchangeData.fromJson(Map<String, dynamic> json) {
-    return ExchangeData(
-      id: json['_id'] ?? '',
-      publisher: json['publisher'] ?? '',
-      name: json['name'] ?? '',
-      toothName: json['toothName'] ?? '',
-      exchangeWith: json['exchangeWith'] ?? '',
-      notes: json['notes'] ?? '',
-      contact: json['contact'] ?? '',
-      images: json['images'] != null ? List<String>.from(json['images']) : [],
-      createdAt: json['createdAt'] ?? '',
-      v: json['__v'] ?? 0,
-      isFavExchange: json['isFavExchange'] ?? false,
-      createdBy: json['createdBy'] != null ? CreatedBy.fromJson(json['createdBy']) : null,
-    );
-  }
-}
-
-class CreatedBy {
-  final String id;
-  final String name;
-  final String email;
-
-  CreatedBy({required this.id, required this.name, required this.email});
-
-  factory CreatedBy.fromJson(Map<String, dynamic> json) {
-    return CreatedBy(
-      id: json['_id'] ?? '',
-      name: json['name'] ?? '',
-      email: json['email'] ?? '',
-    );
+  factory AllExchangeResponseModel.fromJson(dynamic json) {
+    if (json is List) {
+      return AllExchangeResponseModel(
+        exchanges: json.map((e) => ExchangeData.fromJson(e)).toList(),
+      );
+    } else if (json is Map<String, dynamic>) {
+      return AllExchangeResponseModel(
+        exchanges: [ExchangeData.fromJson(json)],
+      );
+    } else {
+      throw Exception('Unexpected JSON format: $json');
+    }
   }
 }

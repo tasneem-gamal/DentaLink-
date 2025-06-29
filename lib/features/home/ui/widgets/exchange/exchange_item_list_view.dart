@@ -1,5 +1,5 @@
 import 'package:dentalink/core/helpers/spacing.dart';
-import 'package:dentalink/features/home/data/models/exchange/all_exchange_response_model.dart';
+import 'package:dentalink/features/home/data/models/exchange/exchange_data.dart';
 import 'package:dentalink/features/home/ui/widgets/exchange/items_card/exchange_container_item.dart';
 import 'package:flutter/material.dart';
 

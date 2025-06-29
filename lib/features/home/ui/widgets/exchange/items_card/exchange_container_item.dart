@@ -1,6 +1,6 @@
 import 'package:dentalink/core/helpers/spacing.dart';
 import 'package:dentalink/core/theming/colors.dart';
-import 'package:dentalink/features/home/data/models/exchange/all_exchange_response_model.dart';
+import 'package:dentalink/features/home/data/models/exchange/exchange_data.dart';
 import 'package:dentalink/features/home/ui/widgets/exchange/items_card/edit_button_and_date.dart';
 import 'package:dentalink/features/home/ui/widgets/exchange/items_card/notes_and_contact.dart';
 import 'package:dentalink/features/home/ui/widgets/exchange/items_card/tooth_and_info.dart';

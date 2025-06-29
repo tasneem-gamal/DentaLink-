@@ -1,4 +1,4 @@
-import 'package:dentalink/features/home/data/models/exchange/all_exchange_response_model.dart';
+import 'package:dentalink/features/home/data/models/exchange/exchange_data.dart';
 import 'package:dentalink/features/home/data/repo/all_exchange_tools_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
