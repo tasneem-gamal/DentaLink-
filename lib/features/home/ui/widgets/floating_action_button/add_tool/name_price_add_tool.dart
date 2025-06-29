@@ -6,8 +6,11 @@ import 'package:flutter/material.dart';
 
 class NamePriceAddTool extends StatelessWidget {
   const NamePriceAddTool({
-    super.key,
+    super.key, required this.nameController, required this.priceController,
   });
+
+  final TextEditingController nameController;
+  final TextEditingController priceController;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +20,7 @@ class NamePriceAddTool extends StatelessWidget {
         verticalSpace(12),
         CustomTextFormField(
           validator: nameValidate, 
+          controller: nameController,
           hintText: 'ex. Mouth Mirror'
         ),
         verticalSpace(16),
@@ -24,6 +28,7 @@ class NamePriceAddTool extends StatelessWidget {
         verticalSpace(12),
         CustomTextFormField(
           validator: priceValidate, 
+          controller: priceController,
           hintText: 'ex. 200LE'
         ),
       ],

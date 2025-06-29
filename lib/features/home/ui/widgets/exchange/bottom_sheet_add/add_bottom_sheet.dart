@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dentalink/core/helpers/extension.dart';
 import 'package:dentalink/core/helpers/spacing.dart';
 import 'package:dentalink/core/widgets/custom_app_button.dart';
 import 'package:dentalink/features/home/data/models/exchange/add_exchange_request_body.dart' show AddExchangeRequestBody;
@@ -104,7 +105,7 @@ class _AddBottomSheetState extends State<AddBottomSheet> {
 
       context.read<AddExchangeToolCubit>().addExchangeTool(addExchangeBody);
 
-      Navigator.pop(context);
+      context.pop();
     }
   }
 

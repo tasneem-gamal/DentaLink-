@@ -4,16 +4,15 @@ import 'package:flutter/material.dart';
 
 class CategoryDropDownMenuAddTool extends StatefulWidget {
   const CategoryDropDownMenuAddTool({
-    super.key,
+    super.key, required this.selectedValue,
   });
+  final ValueNotifier<String?> selectedValue;
 
   @override
   State<CategoryDropDownMenuAddTool> createState() => _CategoryDropDownMenuAddTool();
 }
 
 class _CategoryDropDownMenuAddTool extends State<CategoryDropDownMenuAddTool> {
-  final ValueNotifier<String?> selectedValue =
-      ValueNotifier<String?>('Diagnostic Tools');
 
   final List<String> items = [
     'Diagnostic Tools',
@@ -31,7 +30,7 @@ class _CategoryDropDownMenuAddTool extends State<CategoryDropDownMenuAddTool> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<String?>(
-      valueListenable: selectedValue,
+      valueListenable: widget.selectedValue,
       builder: (context, value, child) {
         return DropdownButtonFormField<String>(
           validator: categoryValidate,
@@ -47,7 +46,7 @@ class _CategoryDropDownMenuAddTool extends State<CategoryDropDownMenuAddTool> {
             );
           }).toList(),
           onChanged: (newValue) {
-            selectedValue.value = newValue;
+            widget.selectedValue.value = newValue;
           },
         );
       },

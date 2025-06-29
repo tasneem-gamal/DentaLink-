@@ -18,7 +18,7 @@ class UploadToolImages extends StatefulWidget {
   });
 
   final Function(bool) onFileUploaded;
-  final Function(List<File>) onFileSelected;
+  final Function(File?) onFileSelected;
 
   @override
   State<UploadToolImages> createState() => _UploadToolImages();
@@ -74,33 +74,29 @@ class _UploadToolImages extends State<UploadToolImages> {
     );
   }
 
-  Future<File> _saveFileToPermanentDirectory(PlatformFile platformFile) async {
-    final directory = await getApplicationDocumentsDirectory();
-    final newPath = "${directory.path}/${platformFile.name}";
-    final newFile = File(newPath);
+Future<File> _saveFileToPermanentDirectory(PlatformFile platformFile) async {
+  final directory = await getApplicationDocumentsDirectory(); 
+  final newPath = "${directory.path}/${platformFile.name}";  
+  final newFile = File(newPath);
 
-    if (platformFile.path != null) {
-      return File(platformFile.path!).copy(newPath);
-    } else if (platformFile.bytes != null) {
-      return newFile.writeAsBytes(platformFile.bytes!);
-    } else {
-      throw Exception("Unable to save file: both bytes and path are null");
-    }
+  if (platformFile.path != null) {
+    return File(platformFile.path!).copy(newPath); 
+  } else if (platformFile.bytes != null) {
+    return newFile.writeAsBytes(platformFile.bytes!);
+  } else {
+    throw Exception("Unable to save file: both bytes and path are null");
   }
+}
 
-  Future<void> _pickFile() async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.any,
-      allowMultiple: true,
-    );
+
+Future<void> _pickFile() async {
+    final result = await FilePicker.platform.pickFiles(type: FileType.any);
 
     if (result != null && result.files.isNotEmpty) {
-      List<File> savedFiles = [];
-      for (var platformFile in result.files) {
-        final savedFile = await _saveFileToPermanentDirectory(platformFile);
-        savedFiles.add(savedFile);
-      }
-      _setNewFiles(savedFiles);
+      final platformFile = result.files.first;
+      final savedFile = await _saveFileToPermanentDirectory(platformFile);
+
+      _setNewFile(savedFile);
       await _simulateUpload();
 
       if (mounted) {
@@ -109,21 +105,23 @@ class _UploadToolImages extends State<UploadToolImages> {
     }
   }
 
-  void _setNewFiles(List<File> files) {
-    setState(() {
-      for (var file in files) {
-        selectedFiles.add(
-          UploadedFile(
-            name: file.path.split('/').last,
-            size: '${(file.lengthSync() / (1024 * 1024)).toStringAsFixed(2)} MB',
-            type: file.path.split('.').last,
-            isUploading: true,
-          ),
-        );
-      }
-    });
-    widget.onFileSelected(files);
-  }
+
+void _setNewFile(File file) {
+  _removeFile();
+  setState(() {
+    selectedFiles = [
+      UploadedFile(
+        name: file.path.split('/').last,
+        size: '${(file.lengthSync() / (1024 * 1024)).toStringAsFixed(2)} MB',
+        type: file.path.split('.').last,
+        isUploading: true,
+      ),
+    ];
+  });
+
+  widget.onFileSelected(file);  
+}
+
 
   Future<void> _simulateUpload() async {
     await Future.delayed(const Duration(seconds: 2));
@@ -131,15 +129,22 @@ class _UploadToolImages extends State<UploadToolImages> {
 
   void _completeUpload() {
     setState(() {
-      for (var file in selectedFiles) {
-        file.isUploading = false;
+      if (selectedFiles.isNotEmpty) {
+        selectedFiles.last.isUploading = false;
+        isFileUploaded = true;
       }
-      isFileUploaded = true;
     });
 
     widget.onFileUploaded(true);
   }
+void _removeFile() {
+  setState(() {
+    selectedFiles.clear();
+    isFileUploaded = false;
+  });
 
+  widget.onFileUploaded(false);
+}
 
 }
 
