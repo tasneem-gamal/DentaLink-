@@ -50,16 +50,16 @@ class GetStartedButtonsContainer extends StatelessWidget {
   }
 
   BoxDecoration containerDecoration() {
-    return BoxDecoration(
+    return const BoxDecoration(
         color: Colors.white,
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            offset: const Offset(4, 4),
+            color: Colors.black45,
+            offset: Offset(4, 4),
             blurRadius: 6,
             spreadRadius: 2,
           ),

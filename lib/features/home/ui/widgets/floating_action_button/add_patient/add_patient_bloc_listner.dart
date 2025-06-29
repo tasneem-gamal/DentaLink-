@@ -51,7 +51,6 @@ class AddPatientBlocListner extends StatelessWidget {
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.white,
                   backgroundColor: Colors.blue,
-                  disabledForegroundColor: Colors.grey.withOpacity(0.38),
                 ),
                 onPressed: () {
                   context.pushNamed(Routes.homeView);

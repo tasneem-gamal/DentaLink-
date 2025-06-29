@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dentalink/core/helpers/constants.dart';
-import 'package:dentalink/core/helpers/extension.dart';
 import 'package:dentalink/core/helpers/spacing.dart';
 import 'package:dentalink/core/widgets/custom_app_button.dart';
 import 'package:dentalink/core/widgets/title_of_text_field.dart';

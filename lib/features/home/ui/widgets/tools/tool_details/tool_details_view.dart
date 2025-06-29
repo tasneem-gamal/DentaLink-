@@ -23,7 +23,6 @@ class ToolDetailsView extends StatelessWidget {
         child: CustomAppButton(
           btnText: 'Add to cart',
           onPressed: () {
-            print('Sending toolId: ${toolData.id}');
             context.read<AddToCartCubit>().emitAddToCartStates([
               Tool(toolId: toolData.id, quantity: 1),
             ]);
