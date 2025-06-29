@@ -12,20 +12,28 @@ class AllExchangeToolsApiService {
     dio = DioFactory.getDio();
   }
 
-  Future<AllExchangeResponseModel> allExchangeToolsService() async{
-    try{
+  Future<AllExchangeResponseModel> allExchangeToolsService() async {
+    try {
       final response = await dio.get(
         '${ApiConstants.baseUrl}${ApiConstants.allExchangeTools}',
         options: Options(
           headers: {
-            'Authorization': 'Bearer ${await SharedPreferenceHelper.getSecuredString(SharedPreferencesKeys.userToken)}',
+            'Authorization':
+                'Bearer ${await SharedPreferenceHelper.getSecuredString(SharedPreferencesKeys.userToken)}',
           },
         ),
       );
-      return AllExchangeResponseModel.fromJson(response.data);
 
-    } catch (e){
+      final model = AllExchangeResponseModel.fromJson(response.data);
+
+      model.exchanges.sort(
+        (a, b) => b.createdAt.compareTo(a.createdAt),
+      );
+
+      return model;
+    } catch (e) {
       throw Exception('Failed to load data: $e');
     }
   }
+
 }
