@@ -24,6 +24,7 @@ import 'package:dentalink/features/cart/data/repo/add_to_cart_repo.dart';
 import 'package:dentalink/features/cart/logic/add_to_cart_cubit/add_to_cart_cubit.dart';
 import 'package:dentalink/features/home/data/apis/add_exchange_tool_api_service.dart';
 import 'package:dentalink/features/home/data/apis/add_patient_api_service.dart';
+import 'package:dentalink/features/home/data/apis/add_tool_api_service.dart';
 import 'package:dentalink/features/home/data/apis/all_exchange_tools_api_service.dart';
 import 'package:dentalink/features/home/data/apis/all_patient_api_service.dart';
 import 'package:dentalink/features/home/data/apis/all_tools_api_service.dart';
@@ -33,6 +34,7 @@ import 'package:dentalink/features/home/data/apis/related_tools_api_service.dart
 import 'package:dentalink/features/home/data/apis/search_api_service.dart';
 import 'package:dentalink/features/home/data/repo/add_exchange_tools_repo.dart';
 import 'package:dentalink/features/home/data/repo/add_patient_repo.dart';
+import 'package:dentalink/features/home/data/repo/add_tool_repo.dart';
 import 'package:dentalink/features/home/data/repo/all_exchange_tools_repo.dart';
 import 'package:dentalink/features/home/data/repo/all_patients_repo.dart';
 import 'package:dentalink/features/home/data/repo/all_tools_repo.dart';
@@ -42,6 +44,7 @@ import 'package:dentalink/features/home/data/repo/related_tools_repo.dart';
 import 'package:dentalink/features/home/data/repo/search_repo.dart';
 import 'package:dentalink/features/home/logic/add_exchange_tool/add_exchange_tool_cubit.dart';
 import 'package:dentalink/features/home/logic/add_patient_cubit/add_patient_cubit.dart';
+import 'package:dentalink/features/home/logic/add_tool/add_tool_cubit.dart';
 import 'package:dentalink/features/home/logic/all_exchange_tools/all_exchange_tools_cubit.dart';
 import 'package:dentalink/features/home/logic/all_patients_cubit/all_patients_cubit.dart';
 import 'package:dentalink/features/home/logic/all_tools_cubit/all_tools_cubit.dart';
@@ -161,4 +164,9 @@ void setUpGetIt() {
   getIt.registerSingleton<AddExchangeToolApiService>(AddExchangeToolApiService());
   getIt.registerSingleton<AddExchangeToolsRepo>(AddExchangeToolsRepo(getIt.get<AddExchangeToolApiService>()));
   getIt.registerFactory<AddExchangeToolCubit>(() => AddExchangeToolCubit(getIt()));
+
+  //add tool
+  getIt.registerSingleton<AddToolApiService>(AddToolApiService());
+  getIt.registerSingleton<AddToolRepo>(AddToolRepo(getIt.get<AddToolApiService>()));
+  getIt.registerFactory<AddToolCubit>(() => AddToolCubit(getIt()));
 }

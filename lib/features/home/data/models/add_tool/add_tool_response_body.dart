@@ -12,7 +12,7 @@ class AddToolResponseBody {
   factory AddToolResponseBody.fromJson(Map<String, dynamic> json){
     return AddToolResponseBody(
       message: json['message'],
-      //tool: json['data'] != null ? tool.fromJson(json['data']) : null,
+      tool: json['data'] != null ? ToolData.fromJson(json['data']) : null,
     );
   }
 }

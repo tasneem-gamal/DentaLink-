@@ -1,43 +1,48 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
 class AddToolRequestBody {
   final String name;
   final String price;
   final String category;
   final String description;
-  final File image;
+  final List<File>? images;
 
   AddToolRequestBody({
     required this.name,
     required this.price,
     required this.category,
     required this.description,
-    required this.image,
+    required this.images,
   });
 
   Future<FormData> toFormData() async {
-    if (!image.existsSync()) {
-      debugPrint("Error: File does not exist at path: ${image.path}");
-      return Future.error("File does not exist");
+    List<MultipartFile> multipartImages = [];
+
+    if (images != null && images!.isNotEmpty) {
+      for (File image in images!) {
+        if (!image.existsSync()) {
+          return Future.error("File ${image.path} does not exist");
+        }
+
+        String fileName = image.path.split('/').last;
+
+        MultipartFile multipartImage = await MultipartFile.fromFile(
+          image.path,
+          filename: fileName,
+        );
+
+        multipartImages.add(multipartImage);
+      }
     }
 
-    String fileName = image.path.split('/').last;
-
-    MultipartFile multipartImage = await MultipartFile.fromFile(
-      image.path,
-      filename: fileName,
-    );
-
-    FormData formData = FormData.fromMap({
-      'name': name,
+    return FormData.fromMap({
+      'toolName': name,
       'price': price,
       'category': category,
       'description': description,
-      'image': multipartImage,
+      if (multipartImages.isNotEmpty) 'images': multipartImages,
     });
-
-    return formData;
   }
+
 }
