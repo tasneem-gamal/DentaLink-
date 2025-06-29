@@ -41,7 +41,7 @@ class AddToolRequestBody {
       'price': price,
       'category': category,
       'description': description,
-      if (multipartImages.isNotEmpty) 'images': multipartImages,
+      if (multipartImages.isNotEmpty) 'image': multipartImages,
     });
   }
 

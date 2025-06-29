@@ -42,7 +42,7 @@ class AddToolBlocListner extends StatelessWidget {
             content: const SingleChildScrollView(
               child: ListBody(
                 children: [
-                  Text('Your patient was added successfully'),
+                  Text('Your tool was added successfully'),
                 ],
               ),
             ),
