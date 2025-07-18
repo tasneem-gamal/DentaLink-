@@ -17,50 +17,42 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: Constants.appPadding,
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            verticalSpace(16),
-            CustomTextFormField(
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(child: verticalSpace(16)),
+          SliverToBoxAdapter(
+            child: CustomTextFormField(
               readOnly: true,
-              onTap: (){
+              onTap: () {
                 context.pushNamed(Routes.searchView);
               },
-              validator: (value) {
-                return null;
-              },
+              validator: (value) => null,
               hintText: 'What are you looking for?',
               prefixIcon: const Icon(FontAwesomeIcons.magnifyingGlass),
             ),
-            verticalSpace(24),
-            const AppCategories(),
-            verticalSpace(30),
-            Text(
+          ),
+          SliverToBoxAdapter(child: verticalSpace(24)),
+          const SliverToBoxAdapter(child: AppCategories()),
+          SliverToBoxAdapter(child: verticalSpace(30)),
+          SliverToBoxAdapter(
+            child: Text(
               'New In Tools',
               style: CustomTextStyles.font16BlackMedium(context),
             ),
-            verticalSpace(10),
-            const NewInToolsBlocBuilder(),
-            verticalSpace(24),
-            Text(
+          ),
+          SliverToBoxAdapter(child: verticalSpace(10)),
+          const SliverToBoxAdapter(child: NewInToolsBlocBuilder()),
+          SliverToBoxAdapter(child: verticalSpace(24)),
+          SliverToBoxAdapter(
+            child: Text(
               'Latest Cases',
               style: CustomTextStyles.font16BlackMedium(context),
             ),
-            verticalSpace(10),
-            const LatestPatientsBlocBuilder()
-          ],
-        ),
+          ),
+          SliverToBoxAdapter(child: verticalSpace(10)),
+          const SliverToBoxAdapter(child: LatestPatientsBlocBuilder()),
+        ],
       ),
     );
   }
 }
-
-
-
-
-
-
-
-
-
