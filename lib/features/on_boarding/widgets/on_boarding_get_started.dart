@@ -9,7 +9,7 @@ class OnBoardingGetStarted extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: ColorsManager.lightBlue,
-      body: SafeArea(child: OnBoardingGetStartedBody()),
+      body: OnBoardingGetStartedBody(),
     );
   }
 }

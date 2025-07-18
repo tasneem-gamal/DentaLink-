@@ -10,40 +10,44 @@ class GetStartedButtonsContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
-        width: double.infinity,
-        height: MediaQuery.sizeOf(context).height * 0.38,
-        decoration: containerDecoration(),
-        child: Padding(
-          padding: const EdgeInsets.only(top: 79, left: 24, right: 24),
-          child: Column(
-            children: [
-              Text(
-                'Start your journey with Us.',
-                style: CustomTextStyles.font16BlackMedium(context),
-              ),
-              verticalSpace(16),
-              CustomAppButton(
-                btnText: 'Get Started',
-                onPressed: (){
-                  context.pushNamed(Routes.signUpView);
-                },
-                textStyle: CustomTextStyles.font20WhiteSemiBold(context),
-                buttonHeight: 65,
-              ),
-              verticalSpace(8),
-              CustomAppButton(
-                btnText: 'Login',
-                onPressed: (){
-                  context.pushNamed(Routes.loginView);
-                },
-                textStyle: CustomTextStyles.font20WhiteSemiBold(context),
-                buttonHeight: 65,
-              ),
-            ],
-          ),
+    final screenHeight = MediaQuery.of(context).size.height;
+    final containerHeight = screenHeight * 0.38;
+
+    return Container(
+      width: double.infinity,
+      height: containerHeight,
+      decoration: containerDecoration(),
+      child: Padding(
+        padding: EdgeInsets.only(
+          top: containerHeight * 0.25,
+          left: 24,
+          right: 24,
+        ),
+        child: Column(
+          children: [
+            Text(
+              'Start your journey with Us.',
+              style: CustomTextStyles.font16BlackMedium(context),
+            ),
+            verticalSpace(containerHeight * 0.05),
+            CustomAppButton(
+              btnText: 'Get Started',
+              onPressed: () {
+                context.pushNamed(Routes.signUpView);
+              },
+              textStyle: CustomTextStyles.font20WhiteSemiBold(context),
+              buttonHeight: containerHeight * 0.18,
+            ),
+            verticalSpace(containerHeight * 0.03),
+            CustomAppButton(
+              btnText: 'Login',
+              onPressed: () {
+                context.pushNamed(Routes.loginView);
+              },
+              textStyle: CustomTextStyles.font20WhiteSemiBold(context),
+              buttonHeight: containerHeight * 0.18,
+            ),
+          ],
         ),
       ),
     );
@@ -51,19 +55,19 @@ class GetStartedButtonsContainer extends StatelessWidget {
 
   BoxDecoration containerDecoration() {
     return const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
+      color: Colors.white,
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(30),
+        topRight: Radius.circular(30),
+      ),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey,
+          offset: Offset(0, -1),
+          blurRadius: 8,
+          spreadRadius: 1,
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black45,
-            offset: Offset(4, 4),
-            blurRadius: 6,
-            spreadRadius: 2,
-          ),
-        ],
-      );
+      ],
+    );
   }
 }

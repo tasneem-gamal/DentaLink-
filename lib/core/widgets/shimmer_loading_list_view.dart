@@ -7,12 +7,12 @@ class ShimmerLoadingListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.separated(
-        itemBuilder: (context, index) => const ShimmerLoading(), 
-        separatorBuilder: (context, index) => verticalSpace(16), 
-        itemCount: 6
-      ),
+    return ListView.separated(
+      itemBuilder: (context, index) => const ShimmerLoading(), 
+      separatorBuilder: (context, index) => verticalSpace(16), 
+      itemCount: 6,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
     );
   }
 }

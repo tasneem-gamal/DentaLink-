@@ -25,11 +25,11 @@ class DoctorAvatar extends StatelessWidget {
           ),
           verticalSpace(10),
           Text(
-            'Dr Mahmoud',
+            'Dr Tasneem',
             style: CustomTextStyles.font14BlackRegular(context),
           ),
           Text(
-            'test@gmail.com',
+            'tasneemgamal044@gmail.com',
             style: CustomTextStyles.font12LightGrayRegular(context),
           ),
         ],

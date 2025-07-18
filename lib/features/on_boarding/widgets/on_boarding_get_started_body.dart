@@ -20,7 +20,12 @@ class OnBoardingGetStartedBody extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        const GetStartedButtonsContainer(),
+        const Positioned(
+          left: 0,
+          right: 0,
+          bottom: 0,
+          child: GetStartedButtonsContainer()
+        ),
         Align(
           alignment: Alignment.center,
           child: Image.asset('assets/images/get_started.png'),
